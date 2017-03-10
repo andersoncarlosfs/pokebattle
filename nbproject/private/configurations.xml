@@ -10,6 +10,7 @@
       </df>
       <in>Battle.cpp</in>
       <in>Pokemon.cpp</in>
+      <in>Pokemon.h</in>
     </df>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>

@@ -3,11 +3,11 @@
 
 CC = g++
 #DEBUG = -g
-CFLAGS = $(DEBUG) -Wno-deprecated
+CFLAGS = $(DEBUG) -Wno-deprecated -std=c++11
 LDFLAGS = $(DEBUG) -lm -lGL -lGLU -lglut -lGLEW
 #LDFLAGS = $(DEBUG) -framework OpenGL -framework GLUT
 EXEC = Battle
-SRCS = Battle.cpp
+SRCS = Battle.cpp Pokemon.cpp
 
 Battle: 
 	$(CC) $(SRCS) $(CFLAGS) $(LDFLAGS) -o $@ 

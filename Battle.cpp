@@ -1,4 +1,4 @@
-https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Load_OBJ
+//https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Load_OBJ
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +21,8 @@ https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Load_OBJ
 #include <stdio.h>      
 
 //b
+#include "Pokemon.h"
+//e
 #include <iostream> 
 #include <sstream>
 #include <fstream>
@@ -126,6 +128,7 @@ void rotate_camera(double speed);
 void move_camera(double speed);
 
 //a
+
 void loadObject(const char* filename, vector<glm::vec4> &vertices, vector<glm::vec3> &normals, vector<GLushort> &elements) {
     ifstream in(filename, ios::in);
     if (!in) {
