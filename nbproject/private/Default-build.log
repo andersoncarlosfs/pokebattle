@@ -1,0 +1,7 @@
+gcc -g -Wno-deprecated -g -lGL -lGLU -lglut -lm -o TD 
+/usr/bin/ld: cannot find -lGL
+/usr/bin/ld: cannot find -lGLU
+/usr/bin/ld: cannot find -lglut
+collect2: error: ld returned 1 exit status
+Makefile:11: recipe for target 'TD' failed
+make: *** [TD] Error 1
