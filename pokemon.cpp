@@ -27,6 +27,7 @@
 #include <string>       // std::string
 #include <regex>        // std::regex
 
+/*
 const regex regex_comment("^(\\s*)?(#)");
 const regex regex_vertex("^(\\s*)?(v\\s)");
 const regex regex_texture("^(\\s*)?(vt\\s)");
@@ -36,7 +37,12 @@ const regex regex_face("^(\\s*)?(f\\s)");
 const regex regex_numeric("-?\\d*\\.{0,1}\\d+");
 
 const regex_token_iterator<string::iterator> regex_iterator_end;
+ */
 
+Pokemon::Pokemon(const char* file) {
+}
+
+/*
 Pokemon::Pokemon(const char* file) {
     ifstream stream(file, ios::in);
     if (stream.is_open()) {
@@ -81,6 +87,7 @@ Pokemon::Pokemon(const char* file) {
         cout << "Can not open the file" << endl;
     }
 }
+ */
 
 Pokemon::~Pokemon() {
 }

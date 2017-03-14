@@ -34,12 +34,12 @@ public:
     Pokemon(const char*);
     virtual ~Pokemon();
 private:
-    vector<vec3> vertexes;
-    vector<vec2> textures;
-    vector<vec3> normals;
-    vector<unsigned short> faces;
-private:
-
+    /*
+       vector<vec3> vertexes;
+       vector<vec2> textures;
+       vector<vec3> normals;
+       vector<unsigned short> faces;
+     */
 };
 
 #endif /* POKEMON_H */
