@@ -2,10 +2,6 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
-      <df name="Classes">
-        <in>pokemon.cpp</in>
-        <in>pokemon.h</in>
-      </df>
       <df name="libraries">
         <df name="glm">
           <df name="detail">
@@ -173,8 +169,6 @@
           </df>
         </df>
       </df>
-      <in>Pokemon.cpp</in>
-      <in>Pokemon.h</in>
       <in>battle.cpp</in>
       <in>pokemon.cpp</in>
       <in>pokemon.h</in>
