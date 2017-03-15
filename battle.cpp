@@ -1,4 +1,4 @@
-//https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Load_OBJ
+//https://github.com/weehowe-z/Backup/tree/master/opengl/GLTank
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,17 +27,12 @@
 #include <math.h>       
 #include <stdio.h>      
 
-//b
-#include "pokemon.h"
-//e
-#include <iostream> 
-#include <sstream>
-#include <fstream>
 #include <vector>
 
-using namespace std;
+#include "pokemon.h"
+#include "squirtle.h"
 
-//e
+using namespace std;
 
 /* Définition des paramètes dynamiques */
 #define G 9.8 // m/s^2
@@ -90,6 +85,8 @@ float vect_x = 0.0;
 float vect_z = 0.0;
 double d = 30;
 
+vector<Pokemon> pokemons;
+
 // Postion de la sphère : t & t-1
 float sphere_x = -20.0;
 float sphere_y = 20.0;
@@ -133,7 +130,7 @@ void rotate_camera(double speed);
 void move_camera(double speed);
 
 /* Fonction d'initialisation */
-void InitGL(int Width, int Height) {
+void init(int Width, int Height) {
     // Couleur d'effacement du buffer de couleur
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -149,7 +146,6 @@ void InitGL(int Width, int Height) {
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHTING);
 
-
     // Activation du lissage
     glShadeModel(GL_SMOOTH);
 
@@ -159,6 +155,12 @@ void InitGL(int Width, int Height) {
     gluPerspective(45.0f, (GLfloat) Width / (GLfloat) Height, 0.1f, 100.0f);
 
     glMatrixMode(GL_MODELVIEW);
+
+    // Enabling textures
+    glEnable(GL_TEXTURE_2D);
+
+    // Loading models
+    pokemons.push_back(Squirtle("models/Squirtle/Squirtle.obj"));
 
 }
 
@@ -193,8 +195,9 @@ void DrawGLScene() {
 
     //////////////////////////////////////////////////
 
-    glTranslatef(sphere_x, sphere_y, sphere_z);
-    glutSolidSphere(3.0, 50, 50);
+    for (int i = 0; i < pokemons.size(); i++) {
+        pokemons[i].draw();
+    }
 
     // Permutation des buffers
     glutPostRedisplay();
@@ -352,9 +355,7 @@ void idle_function() {
 }
 
 int main(int argc, char **argv) {
-    
-    Pokemon("models/Squirtle/Squirtle.obj");
-    
+
     /* Initialize GLUT state - glut will take any command line arguments that pertain to it or 
        X Windows - look at its documentation at http://reality.sgi.com/mjk/spec3/spec3.html */
     glutInit(&argc, argv);
@@ -392,7 +393,7 @@ int main(int argc, char **argv) {
     glutSpecialFunc(Special_key);
 
     /* Intitialisation des paramètres de l'affichage et de la fenêtre */
-    InitGL(640, 480);
+    init(640, 480);
 
     /* Lancement de la boucle OpenGL */
     glutMainLoop();

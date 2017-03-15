@@ -6,7 +6,7 @@ endif
 CC = g++
 DIALECT = -std=c++14
 DEBUG = -g
-CFLAGS = $(DEBUG) -Wno-deprecated $(DIALECT)
+CFLAGS = $(DEBUG) -Wno-deprecated -w $(DIALECT)
 LDFLAGS=
 
 ifeq "$(OS)" "Darwin"

@@ -1,12 +1,3 @@
-//http://stackoverflow.com/questions/23710829/why-is-my-obj-parser-rendering-meshes-like-this
-//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
-//https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Load_OBJ
-//https://www.d.umn.edu/~ddunham/cs5721f07/schedule/resources/lab_opengl07.html
-//http://netization.blogspot.fr/2014/10/loading-obj-files-in-opengl.html
-//https://www.raywenderlich.com/48293/how-to-export-blender-models-to-opengl-es-part-1
-
-//https://www.opengl.org/discussion_boards/showthread.php/171931-Loading-OBJ-and-MTL-files
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,12 +13,13 @@
 
 #include "pokemon.h"
 
+
 #include <iostream>     // std::iostream
+/*
 #include <fstream>      // std::iostream
 #include <string>       // std::string
 #include <regex>        // std::regex
 
-/*
 const regex regex_comment("^(\\s*)?(#)");
 const regex regex_vertex("^(\\s*)?(v\\s)");
 const regex regex_texture("^(\\s*)?(vt\\s)");
@@ -39,10 +31,26 @@ const regex regex_numeric("-?\\d*\\.{0,1}\\d+");
 const regex_token_iterator<string::iterator> regex_iterator_end;
  */
 
-Pokemon::Pokemon(const char* file) {
+//https://www.opengl.org/discussion_boards/showthread.php/171931-Loading-OBJ-and-MTL-files
+//https://www.opengl.org/discussion_boards/showthread.php/171245-texture-mapping
+
+Pokemon::Pokemon(char* file) {
+
+    model = glmReadOBJ(file);
+
+    glmUnitize(model);
+    glmFacetNormals(model);
+    glmVertexNormals(model, 90.0);
+
 }
 
 /*
+//http://stackoverflow.com/questions/23710829/why-is-my-obj-parser-rendering-meshes-like-this
+//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
+//https://en.wikibooks.org/wiki/OpenGL_Programming/Modern_OpenGL_Tutorial_Load_OBJ
+//https://www.d.umn.edu/~ddunham/cs5721f07/schedule/resources/lab_opengl07.html
+//http://netization.blogspot.fr/2014/10/loading-obj-files-in-opengl.html
+//https://www.raywenderlich.com/48293/how-to-export-blender-models-to-opengl-es-part-1
 Pokemon::Pokemon(const char* file) {
     ifstream stream(file, ios::in);
     if (stream.is_open()) {
@@ -90,4 +98,13 @@ Pokemon::Pokemon(const char* file) {
  */
 
 Pokemon::~Pokemon() {
+}
+
+void Pokemon::draw() {
+    //glDisable(GL_LIGHTING);
+    glColor3f(color.x, color.y, color.z);
+    glScalef(scale.x, scale.y, scale.z);
+    glTranslatef(position.x, position.y, position.z);
+    glRotatef(position.x, position.y, position.z);
+    glmDraw(model, GLM_NONE | GLM_SMOOTH | GLM_TEXTURE | GLM_MATERIAL);
 }
