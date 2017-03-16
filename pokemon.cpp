@@ -11,15 +11,14 @@
  * Created on 10 March 2017, 14:03
  */
 
-#include "pokemon.h"
-
-
 #include <iostream>     // std::iostream
 /*
 #include <fstream>      // std::iostream
 #include <string>       // std::string
 #include <regex>        // std::regex
-
+*/
+#include "pokemon.h"
+/*
 const regex regex_comment("^(\\s*)?(#)");
 const regex regex_vertex("^(\\s*)?(v\\s)");
 const regex regex_texture("^(\\s*)?(vt\\s)");
@@ -36,11 +35,11 @@ const regex_token_iterator<string::iterator> regex_iterator_end;
 
 Pokemon::Pokemon(char* file) {
 
-    model = glmReadOBJ(file);
+    this->model = glmReadOBJ(file);
 
-    glmUnitize(model);
+    glmUnitize(this->model);
     glmFacetNormals(model);
-    glmVertexNormals(model, 90.0);
+    glmVertexNormals(this->model, 90.0);
 
 }
 
@@ -101,10 +100,14 @@ Pokemon::~Pokemon() {
 }
 
 void Pokemon::draw() {
-    //glDisable(GL_LIGHTING);
-    glColor3f(color.x, color.y, color.z);
-    glScalef(scale.x, scale.y, scale.z);
-    glTranslatef(position.x, position.y, position.z);
-    glRotatef(position.x, position.y, position.z);
-    glmDraw(model, GLM_NONE | GLM_SMOOTH | GLM_TEXTURE | GLM_MATERIAL);
+    glPushMatrix(); 
+    glMaterialfv(GL_FRONT, GL_SPECULAR, this->material.specular.data());
+    glMaterialfv(GL_FRONT, GL_AMBIENT, this->material.ambient.data());
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, this->material.diffuse.data());
+    glMaterialfv(GL_FRONT, GL_SHININESS, this->material.shininess.data());
+    glScalef(this->scale.x, this->scale.y, this->scale.z);
+    glTranslatef(this->position.x, this->position.y, this->position.z);
+    glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
+    glmDraw(model, GLM_NONE | GLM_SMOOTH); 
+    glPopMatrix();
 }

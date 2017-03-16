@@ -26,24 +26,15 @@
 
 #include "glm.h"
 
-#include "libraries/glm/vec3.hpp"
-#include "libraries/glm/vec4.hpp"
+#include "object.h"
 
 /*
 using namespace std;
 */
 
-using namespace glm;
-
-class Pokemon {
+class Pokemon : public Object {
 public:
-    GLMmodel *model;
-    vec3 color;
-    vec3 scale;
-    vec3 position;
-    vec4 rotatio;
-    vec3 velocity;
-    vec3 acceleration;
+    GLMmodel *model;    
     Pokemon(char*);
     virtual ~Pokemon();
     void draw();

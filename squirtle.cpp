@@ -15,17 +15,20 @@
 
 Squirtle::Squirtle(char* file) : Pokemon(file) {
 
-    color.x = 0;
-    color.y = 0;
-    color.z = 1;
+    this->material = Material::blue;
+    
+    this->scale.x = 5;
+    this->scale.y = 5;
+    this->scale.z = 5;
 
-    scale.x = 5;
-    scale.y = 5;
-    scale.z = 5;
+    this->position.x = -1.2;
+    this->position.y = 1;
+    this->position.z = 6;
 
-    position.x = -1;
-    position.y = 1;
-    position.z = 6;
+    this->rotation.x = 0;
+    this->rotation.y = 1;
+    this->rotation.z = 0;
+    this->rotation.w = 135;
 
 }
 

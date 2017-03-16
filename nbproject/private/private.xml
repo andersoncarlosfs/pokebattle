@@ -10,11 +10,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/deboramorita/Desktop/Battle/pokemon.cpp</file>
-            <file>file:/Users/deboramorita/Desktop/Battle/Models/Squirtle/Zenigame.mtl</file>
-            <file>file:/Users/deboramorita/Desktop/Battle/Models/Squirtle/Zenigame.md5mesh</file>
-            <file>file:/Users/deboramorita/Desktop/Battle/Models/Squirtle/Squirtle.obj</file>
-            <file>file:/Users/deboramorita/Desktop/Battle/pokemon.h</file>
+            <file>file:/Users/deboramorita/Desktop/Battle/Material.cpp</file>
+            <file>file:/Users/deboramorita/Desktop/Battle/Material.h</file>
         </group>
     </open-files>
 </project-private>

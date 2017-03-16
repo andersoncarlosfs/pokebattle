@@ -130,7 +130,7 @@ void rotate_camera(double speed);
 void move_camera(double speed);
 
 /* Fonction d'initialisation */
-void init(int Width, int Height) {
+void InitGL(int Width, int Height) {
     // Couleur d'effacement du buffer de couleur
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
@@ -160,6 +160,7 @@ void init(int Width, int Height) {
     glEnable(GL_TEXTURE_2D);
 
     // Loading models
+    //Squirtle
     pokemons.push_back(Squirtle("models/Squirtle/Squirtle.obj"));
 
 }
@@ -393,7 +394,7 @@ int main(int argc, char **argv) {
     glutSpecialFunc(Special_key);
 
     /* Intitialisation des paramètres de l'affichage et de la fenêtre */
-    init(640, 480);
+    InitGL(640, 480);
 
     /* Lancement de la boucle OpenGL */
     glutMainLoop();
