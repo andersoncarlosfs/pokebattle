@@ -164,15 +164,25 @@
         </df>
       </df>
       <df name="models">
+        <df name="Electrode">
+          <df name="Textures">
+          </df>
+        </df>
         <df name="Squirtle">
           <df name="Textures">
           </df>
         </df>
       </df>
-      <in>_material.cpp</in>
+      <in>attack.cpp</in>
+      <in>attack.h</in>
       <in>battle.cpp</in>
+      <in>buble.cpp</in>
+      <in>buble.h</in>
+      <in>electrode.cpp</in>
+      <in>electrode.h</in>
       <in>glm.cpp</in>
       <in>glm.h</in>
+      <in>material.cpp</in>
       <in>material.h</in>
       <in>object.cpp</in>
       <in>object.h</in>

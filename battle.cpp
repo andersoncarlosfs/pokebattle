@@ -31,6 +31,7 @@
 
 #include "pokemon.h"
 #include "squirtle.h"
+#include "electrode.h"
 
 using namespace std;
 
@@ -42,38 +43,6 @@ using namespace std;
 /* Source de lumière */
 GLfloat light_diffuse[] = {1.0, 1.0, 1.0, 0.0}; /*  composante diffuse */
 GLfloat light_position[] = {0.0, 10.0, 10.0, 0.0}; /*  position */
-
-
-/* Definitions des matériaux */
-GLfloat mat_specularWHITE[] = {255.0, 255.0, 255.0, 1.0};
-GLfloat mat_ambientWHITE[] = {255.0, 255.0, 255.0, 1.0};
-GLfloat mat_diffuseWHITE[] = {255.0, 255.0, 255.0, 1.0};
-GLfloat mat_shininessWHITE[] = {128.0 * 0.4};
-
-GLfloat mat_specularGRAY[] = {0.75, 0.75, 0.75, 1.0};
-GLfloat mat_ambientGRAY[] = {0.5, 0.5, 0.5, 1.0};
-GLfloat mat_diffuseGRAY[] = {0.50, 0.50, 0.50, 1.0};
-GLfloat mat_shininessGRAY[] = {128.0 * 0.6};
-
-GLfloat mat_specularBLUE[] = {0.75, 0.75, 0.75, 1.0};
-GLfloat mat_ambientBLUE[] = {0, 0, 1, 1.0};
-GLfloat mat_diffuseBLUE[] = {0.50, 0.50, 0.50, 1.0};
-GLfloat mat_shininessBLUE[] = {128.0};
-
-GLfloat mat_specularGREEN[] = {0.633, 0.727811, 0.633, 1.0};
-GLfloat mat_ambientGREEN[] = {0.0215, 0.1745, 0.0215, 1.0};
-GLfloat mat_diffuseGREEN[] = {0.07568, 0.61424, 0.07568, 1.0};
-GLfloat mat_shininessGREEN[] = {128.0};
-
-GLfloat mat_specularYELLOW[] = {0.75, 0.75, 0.75, 1.0};
-GLfloat mat_ambientYELLOW[] = {1, 1, 0, 1.0};
-GLfloat mat_diffuseYELLOW[] = {0.50, 0.50, 0.50, 1.0};
-GLfloat mat_shininessYELLOW[] = {128.0};
-
-GLfloat mat_specularRED[] = {0.75, 0.75, 0.75, 1.0};
-GLfloat mat_ambientRED[] = {1.0, 0.0, 0.0, 1.0};
-GLfloat mat_diffuseRED[] = {0.8, 0.50, 0.50, 1.0};
-GLfloat mat_shininessRED[] = {128.0};
 
 /* Variables d'animation */
 float up_down = 0.0, left_right = -1.57;
@@ -87,23 +56,26 @@ double d = 30;
 
 vector<Pokemon> pokemons;
 
-// Postion de la sphère : t & t-1
-float sphere_x = -20.0;
-float sphere_y = 20.0;
-float sphere_z = 0.0;
+//
+float shere_s = 0.1;
 
-float sphere_ix = -20.0;
-float sphere_iy = 20.0;
-float sphere_iz = 0.0;
+// Postion de la sphère : t & t-1
+float sphere_x = -2.35;
+float sphere_y = 6.5;
+float sphere_z = 28;
+
+float sphere_ix = -2.35;
+float sphere_iy = 6.5;
+float sphere_iz = 28;
 
 // Vitesse de la sphère : t & t-1
 float sphere_vx;
 float sphere_vy;
 float sphere_vz;
 
-float sphere_ivx = 25.0;
-float sphere_ivy = 0.0;
-float sphere_ivz = 0.0;
+float sphere_ivx = 20.0;
+float sphere_ivy = 25.0;
+float sphere_ivz = -35.0;
 
 // accélération de la sphère
 float sphere_ax;
@@ -115,7 +87,7 @@ float sphere_iay = -G;
 float sphere_iaz = 0.0;
 
 // Pas de temps
-double dt = 0.0002;
+double dt = 0.005;
 
 /* code ASCII pour la touche escape*/
 #define ESCAPE 27
@@ -128,6 +100,7 @@ int window;
 void Draw3DSGrid();
 void rotate_camera(double speed);
 void move_camera(double speed);
+void InitDynamicParam();
 
 /* Fonction d'initialisation */
 void InitGL(int Width, int Height) {
@@ -156,12 +129,8 @@ void InitGL(int Width, int Height) {
 
     glMatrixMode(GL_MODELVIEW);
 
-    // Enabling textures
-    glEnable(GL_TEXTURE_2D);
-
-    // Loading models
-    //Squirtle
-    pokemons.push_back(Squirtle("models/Squirtle/Squirtle.obj"));
+    // Initialisation des paramètres dynamiques
+    InitDynamicParam();
 
 }
 
@@ -196,10 +165,15 @@ void DrawGLScene() {
 
     //////////////////////////////////////////////////
 
+    glPushMatrix();
+        glTranslatef(sphere_x, sphere_y, sphere_z);
+    glutSolidSphere(shere_s, 50, 50);
+glPopMatrix();
+    
     for (int i = 0; i < pokemons.size(); i++) {
         pokemons[i].draw();
     }
-
+   
     // Permutation des buffers
     glutPostRedisplay();
     glutSwapBuffers();
@@ -248,18 +222,13 @@ void Special_key(int key, int x, int y) {
 
 }
 
-/* Encapsulation des fonctions matériaux */
-void SetMaterial(GLfloat spec[], GLfloat amb[], GLfloat diff[], GLfloat shin[]) {
-    glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
-    glMaterialfv(GL_FRONT, GL_SHININESS, shin);
-    glMaterialfv(GL_FRONT, GL_AMBIENT, amb);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, diff);
-}
-
 /* Dessin d'une grille 3D */
 void Draw3DSGrid() {
 
-    SetMaterial(mat_specularYELLOW, mat_ambientYELLOW, mat_diffuseYELLOW, mat_shininessYELLOW);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, Material::yellow.specular.data());
+    glMaterialfv(GL_FRONT, GL_SHININESS, Material::yellow.shininess.data());
+    glMaterialfv(GL_FRONT, GL_AMBIENT, Material::yellow.ambient.data());
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, Material::yellow.diffuse.data());
 
     // Draw a 1x1 grid along the X and Z axis'
     float i;
@@ -308,9 +277,23 @@ void rotate_camera(double speed) {
     cam_look_z = cam_pos_z + new_z;
 }
 
+void InitDynamicParam() {
+
+    // Loading models
+    //Squirtle
+    pokemons.push_back(Squirtle("models/Squirtle/Squirtle.obj"));
+    //Electrode
+    pokemons.push_back(Electrode("models/Electrode/Electrode.obj"));
+    
+}
+
 /* Défintion de la fonction IDLE */
 void idle_function() {
 
+    if (shere_s < 0.3) {
+        shere_s = shere_s + 0.15;
+    }
+    
     ////////////////////////////////////
     // Numerical integration
 
@@ -325,7 +308,7 @@ void idle_function() {
     ////////////////////////////////////
     // Collision test
 
-    if (sphere_y < 3.0) {
+    if (sphere_y < 0.3) {
         sphere_y = sphere_iy;
         sphere_vy = -sphere_vy;
     }

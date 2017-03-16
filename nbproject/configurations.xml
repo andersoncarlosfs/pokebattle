@@ -2,6 +2,12 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
+      <in>attack.cpp</in>
+      <in>attack.h</in>
+      <in>buble.cpp</in>
+      <in>buble.h</in>
+      <in>electrode.cpp</in>
+      <in>electrode.h</in>
       <in>squirtle.cpp</in>
       <in>squirtle.h</in>
     </df>
@@ -40,6 +46,18 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="attack.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="attack.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="buble.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="buble.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="electrode.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="electrode.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="squirtle.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="squirtle.h" ex="false" tool="3" flavor2="0">
