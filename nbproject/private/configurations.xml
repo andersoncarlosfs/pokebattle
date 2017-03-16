@@ -169,10 +169,10 @@
           </df>
         </df>
       </df>
+      <in>_material.cpp</in>
       <in>battle.cpp</in>
       <in>glm.cpp</in>
       <in>glm.h</in>
-      <in>material.cpp</in>
       <in>material.h</in>
       <in>object.cpp</in>
       <in>object.h</in>
