@@ -129,6 +129,9 @@ void InitGL(int Width, int Height) {
 
     glMatrixMode(GL_MODELVIEW);
 
+    // #
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     // Initialisation des paramètres dynamiques
     InitDynamicParam();
 
@@ -148,6 +151,15 @@ void ReSizeGLScene(int Width, int Height) {
 
     glMatrixMode(GL_MODELVIEW);
 
+    // #
+    glLoadIdentity();
+
+    // #
+    glDepthFunc(GL_LEQUAL);
+
+    // #
+    glEnable(GL_CULL_FACE);
+
 }
 
 /* Focntion de dessin */
@@ -166,14 +178,14 @@ void DrawGLScene() {
     //////////////////////////////////////////////////
 
     glPushMatrix();
-        glTranslatef(sphere_x, sphere_y, sphere_z);
+    glTranslatef(sphere_x, sphere_y, sphere_z);
     glutSolidSphere(shere_s, 50, 50);
-glPopMatrix();
-    
+    glPopMatrix();
+
     for (int i = 0; i < pokemons.size(); i++) {
         pokemons[i].draw();
     }
-   
+
     // Permutation des buffers
     glutPostRedisplay();
     glutSwapBuffers();
@@ -284,7 +296,7 @@ void InitDynamicParam() {
     pokemons.push_back(Squirtle("models/Squirtle/Squirtle.obj"));
     //Electrode
     pokemons.push_back(Electrode("models/Electrode/Electrode.obj"));
-    
+
 }
 
 /* Défintion de la fonction IDLE */
@@ -293,7 +305,7 @@ void idle_function() {
     if (shere_s < 0.3) {
         shere_s = shere_s + 0.15;
     }
-    
+
     ////////////////////////////////////
     // Numerical integration
 

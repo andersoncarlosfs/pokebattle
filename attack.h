@@ -14,7 +14,7 @@
 #ifndef ATTACK_H
 #define ATTACK_H
 
-#include "object.h"
+#include "mover.h"
 
 class Attack : public Object {
 public:
