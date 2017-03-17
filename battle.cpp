@@ -22,10 +22,9 @@
 #include <GL/glut.h>   
 #endif
 
-#include <stdlib.h>     
-#include <math.h>       
-#include <stdio.h>      
-
+#include <cstdlib>
+#include <iostream>     
+#include <cmath>       
 #include <vector>
 
 #include "pokemon.h"
@@ -149,7 +148,7 @@ void DrawGLScene() {
     for (int i = 0; i < pokemons.size(); i++) {
         pokemons[i].draw();
         // Attacking pokemons
-        pokemons[i].attack(&pokemons[(i + 1) % pokemons.size()]);
+        // # pokemons[i].attack(&pokemons[(i + 1) % pokemons.size()]);
     }
 
     // Permutation des buffers
@@ -263,6 +262,9 @@ void InitDynamicParam() {
     // Electrode
     pokemons.push_back(Electrode(dt, "models/Electrode/Electrode.obj"));
 
+    // #
+    pokemons[0].attack(&pokemons[1]);
+    
 }
 
 /* Défintion de la fonction IDLE */

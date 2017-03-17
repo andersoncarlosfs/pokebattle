@@ -20,8 +20,13 @@ Attack::~Attack() {
 }
 
 void Attack::draw() {
-    if(!this->active) {
+    if (!this->active) {
         return;
     }
 }
 
+void Attack::collisionDetection() {
+    if (!this->active) {
+        return;
+    }
+}
