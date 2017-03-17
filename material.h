@@ -35,6 +35,7 @@ namespace Material {
         Material();
         Material(const GLfloat*, const GLfloat*, const GLfloat*, const GLfloat*);
         virtual ~Material();
+        void apply();
     private:
     };
 

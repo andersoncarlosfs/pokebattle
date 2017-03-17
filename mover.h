@@ -16,7 +16,7 @@
 
 #include "object.h"
 
-class Mover {
+class Mover : public Object {
 public:
     static const float gravity; // m/s^2
     float damping;

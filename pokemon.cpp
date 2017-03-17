@@ -103,10 +103,7 @@ Pokemon::~Pokemon() {
 
 void Pokemon::draw() {
     glPushMatrix(); 
-    glMaterialfv(GL_FRONT, GL_SPECULAR, this->material.specular.data());
-    glMaterialfv(GL_FRONT, GL_AMBIENT, this->material.ambient.data());
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, this->material.diffuse.data());
-    glMaterialfv(GL_FRONT, GL_SHININESS, this->material.shininess.data());
+    this->material.apply();
     glScalef(this->scale.x, this->scale.y, this->scale.z);
     glTranslatef(this->position.x, this->position.y, this->position.z);
     glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);

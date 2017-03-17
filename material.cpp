@@ -11,6 +11,12 @@
  * Created on March 16, 2017, 6:25 PM
  */
 
+#ifdef __APPLE__
+#include <OpenGL/OpenGL.h>
+#else
+#include <GL/gl.h> 
+#endif
+
 #include <algorithm>
 
 #include "material.h"
@@ -28,3 +34,9 @@ Material::Material::Material(const GLfloat* specular, const GLfloat* ambient, co
 Material::Material::~Material() {
 }
 
+void Material::Material::apply() {
+    glMaterialfv(GL_FRONT, GL_SPECULAR, this->specular.data());
+    glMaterialfv(GL_FRONT, GL_AMBIENT, this->ambient.data());
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, this->diffuse.data());
+    glMaterialfv(GL_FRONT, GL_SHININESS, this->shininess.data());
+}

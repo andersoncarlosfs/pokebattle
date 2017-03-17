@@ -33,13 +33,13 @@
 using namespace std;
 */
 
-class Pokemon : public Object {
+class Pokemon : public Mover {
 public:
     GLMmodel* model;    
     Attack* attack;
     Pokemon(char*);
     virtual ~Pokemon();
-    void draw();
+    virtual void draw();
 private:
     /*
        vector<vec3> vertexes;

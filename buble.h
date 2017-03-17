@@ -19,8 +19,9 @@
 class Buble : public Attack {
 public:  
     static const float damping;
-    Buble();
+    Buble(vec3 position);
     virtual ~Buble();
+    void draw();
 private:
 };
 

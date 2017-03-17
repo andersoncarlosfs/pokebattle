@@ -31,7 +31,7 @@ Squirtle::Squirtle(char* file) : Pokemon(file) {
     this->rotation.z = 0;
     this->rotation.w = 135;
 
-    //this->attack = new Buble();
+    this->attack = new Buble(vec3(-2.35, 6.5, 28));
 
 }
 
