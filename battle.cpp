@@ -184,6 +184,7 @@ void DrawGLScene() {
 
     for (int i = 0; i < pokemons.size(); i++) {
         pokemons[i].draw();
+        pokemons[i].attack();
     }
 
     // Permutation des buffers
@@ -293,9 +294,9 @@ void InitDynamicParam() {
 
     // Loading models
     //Squirtle
-    pokemons.push_back(Squirtle("models/Squirtle/Squirtle.obj"));
+    pokemons.push_back(Squirtle(dt, "models/Squirtle/Squirtle.obj"));
     //Electrode
-    pokemons.push_back(Electrode("models/Electrode/Electrode.obj"));
+    pokemons.push_back(Electrode(dt, "models/Electrode/Electrode.obj"));
 
 }
 

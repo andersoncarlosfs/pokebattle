@@ -18,7 +18,7 @@
 
 class Squirtle : public Pokemon {
 public:
-    Squirtle(char*);
+    Squirtle(double, char*);
     virtual ~Squirtle();
 private:
 };

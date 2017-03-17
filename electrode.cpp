@@ -13,10 +13,10 @@
 
 #include "electrode.h"
 
-Electrode::Electrode(char* file) : Pokemon(file) {
+Electrode::Electrode(double time, char* file) : Pokemon(time, file) {
 
     this->material = Material::red;
-    
+
     this->scale.x = 10;
     this->scale.y = 10;
     this->scale.z = 10;

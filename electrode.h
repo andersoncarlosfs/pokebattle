@@ -18,7 +18,7 @@
 
 class Electrode : public Pokemon {
 public:
-    Electrode(char*);
+    Electrode(double, char*);
     virtual ~Electrode();
 private:
 };

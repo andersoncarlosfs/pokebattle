@@ -36,10 +36,12 @@ using namespace std;
 class Pokemon : public Mover {
 public:
     GLMmodel* model;    
-    Attack* attack;
-    Pokemon(char*);
+    Attack* attacks;
+    Pokemon(double, char*);
     virtual ~Pokemon();
     virtual void draw();
+    void idle();
+    virtual void attack();
 private:
     /*
        vector<vec3> vertexes;

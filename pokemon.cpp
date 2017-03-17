@@ -18,7 +18,7 @@
 #include <fstream>      // std::iostream
 #include <string>       // std::string
 #include <regex>        // std::regex
-*/
+ */
 #include "pokemon.h"
 /*
 const regex regex_comment("^(\\s*)?(#)");
@@ -35,7 +35,7 @@ const regex_token_iterator<string::iterator> regex_iterator_end;
 //https://www.opengl.org/discussion_boards/showthread.php/171931-Loading-OBJ-and-MTL-files
 //https://www.opengl.org/discussion_boards/showthread.php/171245-texture-mapping
 
-Pokemon::Pokemon(char* file) {
+Pokemon::Pokemon(double time, char* file) : Mover(time) {
 
     this->model = glmReadOBJ(file);
 
@@ -102,11 +102,22 @@ Pokemon::~Pokemon() {
 }
 
 void Pokemon::draw() {
-    glPushMatrix(); 
+    glPushMatrix();
     this->material.apply();
     glScalef(this->scale.x, this->scale.y, this->scale.z);
     glTranslatef(this->position.x, this->position.y, this->position.z);
     glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
-    glmDraw(model, GLM_NONE | GLM_SMOOTH); 
+    glmDraw(model, GLM_NONE | GLM_SMOOTH);
     glPopMatrix();
+}
+
+void Pokemon::idle() {
+    cout << "Pokemon" << "\t" << "idle()" << endl;
+}
+
+void Pokemon::attack() {
+    if (this->attacks != 0) {
+        this->attacks->draw();
+        cout << "Pokemon" << "\t" << "attack()" << endl;
+    }
 }

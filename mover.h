@@ -20,10 +20,11 @@ class Mover : public Object {
 public:
     static const float gravity; // m/s^2
     float damping;
+    double time;
     vec3 position_i;
     vec3 velocity_i;
     vec3 acceleration_i;
-    Mover();
+    Mover(double);
     virtual ~Mover();
 private:
 };

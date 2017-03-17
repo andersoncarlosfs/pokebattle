@@ -13,7 +13,7 @@
 
 #include "attack.h"
 
-Attack::Attack() {
+Attack::Attack(double time) : Mover(time) {
 }
 
 Attack::~Attack() {

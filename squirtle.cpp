@@ -14,7 +14,7 @@
 #include "squirtle.h"
 #include "buble.h"
 
-Squirtle::Squirtle(char* file) : Pokemon(file) {
+Squirtle::Squirtle(double time, char* file) : Pokemon(time, file) {
 
     this->material = Material::blue;
 
@@ -31,7 +31,7 @@ Squirtle::Squirtle(char* file) : Pokemon(file) {
     this->rotation.z = 0;
     this->rotation.w = 135;
 
-    this->attack = new Buble(vec3(-2.35, 6.5, 28));
+    this->attacks = new Buble(time, vec3(-2.35, 6.5, 28));
 
 }
 

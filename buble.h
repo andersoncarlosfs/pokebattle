@@ -17,11 +17,12 @@
 #include "attack.h"
 
 class Buble : public Attack {
-public:  
+public:
     static const float damping;
-    Buble(vec3 position);
+    Buble(double, vec3 position);
     virtual ~Buble();
     void draw();
+    void idle();
 private:
 };
 

@@ -18,7 +18,7 @@
 
 class Attack : public Mover {
 public:
-    Attack();
+    Attack(double);
     virtual ~Attack();
 private:
 };
