@@ -41,6 +41,7 @@ public:
     virtual ~Pokemon();
     virtual void draw();
     void idle();
+    void collisionDetection();
     virtual void attack();
 private:
     /*

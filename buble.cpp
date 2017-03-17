@@ -19,10 +19,7 @@
 
 #include "buble.h"
 
-const float Buble::damping = 0;
-
 Buble::Buble(double time, vec3 position) : Attack(time) {
-
 
     this->material = Material::white;
 
@@ -39,7 +36,7 @@ Buble::Buble(double time, vec3 position) : Attack(time) {
     this->velocity.z = 0;
 
     this->velocity_i.y = 20;
-    this->velocity_i.x = 25;
+    this->velocity_i.x = 20;
     this->velocity_i.z = -35;
 
     this->acceleration.y = 0;
@@ -49,6 +46,8 @@ Buble::Buble(double time, vec3 position) : Attack(time) {
     this->acceleration_i.y = 0;
     this->acceleration_i.x = -Mover::gravity;
     this->acceleration_i.z = 0;
+    
+    this->damping = 0.8;
 
 }
 
@@ -58,54 +57,14 @@ Buble::~Buble() {
 void Buble::draw() {
     glPushMatrix();
     this->material.apply();
+    glTranslatef(this->position.x, this->position.y, this->position.z);
     glutSolidSphere(0.3, 50, 50);
     glPopMatrix();
 }
 
-void Buble::idle() {
-
-    /*
-    ////////////////////////////////////
-    // Numerical integration
-
-    sphere_vx = sphere_ivx + (sphere_iax * dt);
-    sphere_vy = sphere_ivy + (sphere_iay * dt);
-    sphere_vz = sphere_ivz + (sphere_iaz * dt);
-
-    sphere_x = sphere_ix + (sphere_vx * dt);
-    sphere_y = sphere_iy + (sphere_vy * dt);
-    sphere_z = sphere_iz + (sphere_vz * dt);
-
-    ////////////////////////////////////
-    // Collision test
-
-    if (sphere_y < 0.3) {
-        sphere_y = sphere_iy;
-        sphere_vy = -sphere_vy;
+void Buble::collisionDetection() {
+    if (this->position.y < 0.3) {
+        this->position.y = this->position_i.y;
+        this->velocity.y = -this->velocity.y;
     }
-
-    ////////////////////////////////////
-    // Acceleration calculation: ajouter la viscosité
-
-    sphere_ax = -(sphere_vx * B);
-    sphere_ay = -G - (sphere_vy * B);
-    sphere_az = -(sphere_vz * B);
-
-    ////////////////////////////////////
-    // System update
-
-    sphere_iax = sphere_ax;
-    sphere_iay = sphere_ay;
-    sphere_iaz = sphere_az;
-
-    sphere_ivx = sphere_vx;
-    sphere_ivy = sphere_vy;
-    sphere_ivz = sphere_vz;
-
-    sphere_ix = sphere_x;
-    sphere_iy = sphere_y;
-    sphere_iz = sphere_z;
-
-    ////////////////////////////////////
-     */
 }

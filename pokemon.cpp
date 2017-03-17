@@ -112,12 +112,19 @@ void Pokemon::draw() {
 }
 
 void Pokemon::idle() {
-    cout << "Pokemon" << "\t" << "idle()" << endl;
+    if (this->attacks != 0) {
+        this->attacks->idle();
+    }
+    //cout << "Pokemon" << "\t" << "idle()" << endl;
+}
+
+void Pokemon::collisionDetection() {
+    //cout << "Pokemon:" << "\t" << this << "\t" << "collisionDetection()" << endl;
 }
 
 void Pokemon::attack() {
     if (this->attacks != 0) {
         this->attacks->draw();
-        cout << "Pokemon" << "\t" << "attack()" << endl;
     }
+    //cout << "Pokemon:" << "\t" << this << "\t" << "attack()" << endl;
 }

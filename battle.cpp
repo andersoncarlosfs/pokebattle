@@ -56,38 +56,8 @@ double d = 30;
 
 vector<Pokemon> pokemons;
 
-//
-float shere_s = 0.1;
-
-// Postion de la sphère : t & t-1
-float sphere_x = -2.35;
-float sphere_y = 6.5;
-float sphere_z = 28;
-
-float sphere_ix = -2.35;
-float sphere_iy = 6.5;
-float sphere_iz = 28;
-
-// Vitesse de la sphère : t & t-1
-float sphere_vx;
-float sphere_vy;
-float sphere_vz;
-
-float sphere_ivx = 20.0;
-float sphere_ivy = 25.0;
-float sphere_ivz = -35.0;
-
-// accélération de la sphère
-float sphere_ax;
-float sphere_ay;
-float sphere_az;
-
-float sphere_iax = 0.0;
-float sphere_iay = -G;
-float sphere_iaz = 0.0;
-
 // Pas de temps
-double dt = 0.005;
+double dt = 0.05;
 
 /* code ASCII pour la touche escape*/
 #define ESCAPE 27
@@ -176,11 +146,6 @@ void DrawGLScene() {
     glPopMatrix();
 
     //////////////////////////////////////////////////
-
-    glPushMatrix();
-    glTranslatef(sphere_x, sphere_y, sphere_z);
-    glutSolidSphere(shere_s, 50, 50);
-    glPopMatrix();
 
     for (int i = 0; i < pokemons.size(); i++) {
         pokemons[i].draw();
@@ -303,52 +268,10 @@ void InitDynamicParam() {
 /* Défintion de la fonction IDLE */
 void idle_function() {
 
-    if (shere_s < 0.3) {
-        shere_s = shere_s + 0.15;
+    for (int i = 0; i < pokemons.size(); i++) {
+        pokemons[i].idle();
     }
 
-    ////////////////////////////////////
-    // Numerical integration
-
-    sphere_vx = sphere_ivx + (sphere_iax * dt);
-    sphere_vy = sphere_ivy + (sphere_iay * dt);
-    sphere_vz = sphere_ivz + (sphere_iaz * dt);
-
-    sphere_x = sphere_ix + (sphere_vx * dt);
-    sphere_y = sphere_iy + (sphere_vy * dt);
-    sphere_z = sphere_iz + (sphere_vz * dt);
-
-    ////////////////////////////////////
-    // Collision test
-
-    if (sphere_y < 0.3) {
-        sphere_y = sphere_iy;
-        sphere_vy = -sphere_vy;
-    }
-
-    ////////////////////////////////////
-    // Acceleration calculation: ajouter la viscosité
-
-    sphere_ax = -(sphere_vx * B);
-    sphere_ay = -G - (sphere_vy * B);
-    sphere_az = -(sphere_vz * B);
-
-    ////////////////////////////////////
-    // System update
-
-    sphere_iax = sphere_ax;
-    sphere_iay = sphere_ay;
-    sphere_iaz = sphere_az;
-
-    sphere_ivx = sphere_vx;
-    sphere_ivy = sphere_vy;
-    sphere_ivz = sphere_vz;
-
-    sphere_ix = sphere_x;
-    sphere_iy = sphere_y;
-    sphere_iz = sphere_z;
-
-    ////////////////////////////////////
 }
 
 int main(int argc, char **argv) {

@@ -26,6 +26,8 @@ public:
     vec3 acceleration_i;
     Mover(double);
     virtual ~Mover();
+    virtual void idle();
+    virtual void collisionDetection() = 0;
 private:
 };
 
