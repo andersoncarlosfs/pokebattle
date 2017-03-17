@@ -19,3 +19,9 @@ Attack::Attack(double time) : Mover(time) {
 Attack::~Attack() {
 }
 
+void Attack::draw() {
+    if(!this->active) {
+        return;
+    }
+}
+

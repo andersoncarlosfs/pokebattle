@@ -1,5 +1,4 @@
 //https://github.com/ameithor/OpenGL/tree/master/Bubble%20Booble%202D
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -102,6 +101,7 @@ Pokemon::~Pokemon() {
 }
 
 void Pokemon::draw() {
+
     glPushMatrix();
     this->material.apply();
     glScalef(this->scale.x, this->scale.y, this->scale.z);
@@ -109,10 +109,15 @@ void Pokemon::draw() {
     glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
     glmDraw(model, GLM_NONE | GLM_SMOOTH);
     glPopMatrix();
+
+    if (this->isAttacking()) {
+        this->attacks->draw();
+    }
+
 }
 
 void Pokemon::idle() {
-    if (this->attacks != 0) {
+    if (this->isAttacking()) {
         this->attacks->idle();
     }
     //cout << "Pokemon" << "\t" << "idle()" << endl;
@@ -122,9 +127,13 @@ void Pokemon::collisionDetection() {
     //cout << "Pokemon:" << "\t" << this << "\t" << "collisionDetection()" << endl;
 }
 
-void Pokemon::attack() {
+void Pokemon::attack(Pokemon* target) {
     if (this->attacks != 0) {
-        this->attacks->draw();
+        this->attacks->target = target;
+        this->attacks->active = true;
     }
-    //cout << "Pokemon:" << "\t" << this << "\t" << "attack()" << endl;
+}
+
+bool Pokemon::isAttacking() {
+    return this->attacks != 0 && this->attacks->active;
 }

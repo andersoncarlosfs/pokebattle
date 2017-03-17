@@ -16,7 +16,7 @@
 
 /*
 #include <vector>       
-*/
+ */
 
 #ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
@@ -31,18 +31,18 @@
 
 /*
 using namespace std;
-*/
+ */
 
 class Pokemon : public Mover {
 public:
-    GLMmodel* model;    
+    GLMmodel* model;
     Attack* attacks;
     Pokemon(double, char*);
     virtual ~Pokemon();
     virtual void draw();
     void idle();
     void collisionDetection();
-    virtual void attack();
+    virtual void attack(Pokemon*);
 private:
     /*
        vector<vec3> vertexes;
@@ -50,6 +50,7 @@ private:
        vector<vec3> normals;
        vector<GLushort> faces;
      */
+    virtual bool isAttacking();
 };
 
 #endif /* POKEMON_H */

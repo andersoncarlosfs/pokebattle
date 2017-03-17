@@ -55,6 +55,7 @@ Buble::~Buble() {
 }
 
 void Buble::draw() {
+    Attack::draw();
     glPushMatrix();
     this->material.apply();
     glTranslatef(this->position.x, this->position.y, this->position.z);

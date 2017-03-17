@@ -1,5 +1,4 @@
 //https://github.com/weehowe-z/Backup/tree/master/opengl/GLTank
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -149,7 +148,8 @@ void DrawGLScene() {
 
     for (int i = 0; i < pokemons.size(); i++) {
         pokemons[i].draw();
-        pokemons[i].attack();
+        // Attacking pokemons
+        pokemons[i].attack(&pokemons[(i + 1) % pokemons.size()]);
     }
 
     // Permutation des buffers
@@ -257,10 +257,10 @@ void rotate_camera(double speed) {
 
 void InitDynamicParam() {
 
-    // Loading models
-    //Squirtle
+    // Loading pokemons
+    // Squirtle
     pokemons.push_back(Squirtle(dt, "models/Squirtle/Squirtle.obj"));
-    //Electrode
+    // Electrode
     pokemons.push_back(Electrode(dt, "models/Electrode/Electrode.obj"));
 
 }
