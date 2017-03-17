@@ -13,6 +13,8 @@
 
 #include "mover.h"
 
+const float Mover::gravity = 9.8; // m/s^2
+
 Mover::Mover() {
 }
 

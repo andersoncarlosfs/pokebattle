@@ -12,11 +12,12 @@
  */
 
 #include "squirtle.h"
+#include "buble.h"
 
 Squirtle::Squirtle(char* file) : Pokemon(file) {
 
     this->material = Material::blue;
-    
+
     this->scale.x = 5;
     this->scale.y = 5;
     this->scale.z = 5;
@@ -29,6 +30,8 @@ Squirtle::Squirtle(char* file) : Pokemon(file) {
     this->rotation.y = 1;
     this->rotation.z = 0;
     this->rotation.w = 135;
+
+    //this->attack = new Buble();
 
 }
 

@@ -1,5 +1,5 @@
 /*
-  File:  bubbles.cpp
+  File:  http://cs.indstate.edu/~jkinne/cs440-f2012/code/bubbles.cpp
 
   Author: Jeff Kinne
 

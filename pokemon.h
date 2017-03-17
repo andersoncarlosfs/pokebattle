@@ -27,6 +27,7 @@
 #include "glm.h"
 
 #include "mover.h"
+#include "attack.h"
 
 /*
 using namespace std;
@@ -34,7 +35,8 @@ using namespace std;
 
 class Pokemon : public Object {
 public:
-    GLMmodel *model;    
+    GLMmodel* model;    
+    Attack* attack;
     Pokemon(char*);
     virtual ~Pokemon();
     void draw();

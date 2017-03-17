@@ -18,7 +18,9 @@
 
 class Mover {
 public:
-    vec3 position_i;    
+    static const float gravity; // m/s^2
+    float damping;
+    vec3 position_i;
     vec3 velocity_i;
     vec3 acceleration_i;
     Mover();

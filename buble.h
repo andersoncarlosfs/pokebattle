@@ -16,8 +16,9 @@
 
 #include "attack.h"
 
-class Buble {
-public:
+class Buble : public Attack {
+public:  
+    static const float damping;
     Buble();
     virtual ~Buble();
 private:

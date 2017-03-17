@@ -16,7 +16,7 @@
 
 #include "mover.h"
 
-class Attack : public Object {
+class Attack : public Mover {
 public:
     Attack();
     virtual ~Attack();

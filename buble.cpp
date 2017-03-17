@@ -13,7 +13,10 @@
 
 #include "buble.h"
 
+const float Buble::damping = 0;
+
 Buble::Buble() {
+
 }
 
 Buble::~Buble() {
