@@ -12,9 +12,9 @@
  */
 
 #ifdef __APPLE__
-#include <OpenGL/OpenGL.h>
+#include <GLUT/glut.h>
 #else
-#include <GL/gl.h> 
+#include <GL/glut.h>
 #endif
 
 #include <algorithm>

@@ -6,6 +6,10 @@
         <in>bubbles.cpp</in>
       </df>
       <df name="libraries">
+        <df name="gli">
+          <df name="core">
+          </df>
+        </df>
         <df name="glm">
           <df name="detail">
             <in>_features.hpp</in>

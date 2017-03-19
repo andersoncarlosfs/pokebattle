@@ -93,7 +93,7 @@ void Buble::collisionDetection() {
     if ((sqrt(pow((this->position.x - (this->target->position.x * this->target->scale.x)), 2)
             + pow((this->position.y - (this->target->position.y * this->target->scale.y)), 2)
             + pow((this->position.z - (this->target->position.z * this->target->scale.z)), 2)))
-            < (2 * 0.3) {
+            < (2 * 0.3)) {
 
         this->active = false;
 
