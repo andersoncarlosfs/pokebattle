@@ -100,6 +100,7 @@ Pokemon::Pokemon(const char* file) {
 Pokemon::~Pokemon() {
 }
 
+//http://www.sgglnow.com/tutorial-10-using-textures-for-color/
 void Pokemon::draw() {
 
     glPushMatrix();
