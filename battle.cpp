@@ -55,7 +55,7 @@ double d = 30;
 vector<Pokemon> pokemons;
 
 // Pas de temps
-double dt = 0.05;
+double dt = 0.00005;
 
 /* code ASCII pour la touche escape*/
 #define ESCAPE 27

@@ -21,9 +21,9 @@ Electrode::Electrode(double time, char* file) : Pokemon(time, file) {
     this->scale.y = 10;
     this->scale.z = 10;
 
-    this->position.x = 2.4;
+    this->position.x = 20;
     this->position.y = 1;
-    this->position.z = -2;
+    this->position.z = -10;
 
     this->rotation.x = 1;
     this->rotation.y = 1;

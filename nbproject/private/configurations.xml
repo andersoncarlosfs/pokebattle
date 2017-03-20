@@ -8,7 +8,61 @@
       <df name="libraries">
         <df name="gli">
           <df name="core">
+            <in>clear.hpp</in>
+            <in>convert_func.hpp</in>
+            <in>coord.hpp</in>
+            <in>dummy.cpp</in>
+            <in>file.hpp</in>
+            <in>filter.hpp</in>
+            <in>filter_compute.hpp</in>
+            <in>flip.hpp</in>
+            <in>mipmaps_compute.hpp</in>
+            <in>storage.hpp</in>
+            <in>storage_linear.hpp</in>
+            <in>workaround.hpp</in>
           </df>
+          <in>clear.hpp</in>
+          <in>comparison.hpp</in>
+          <in>convert.hpp</in>
+          <in>copy.hpp</in>
+          <in>duplicate.hpp</in>
+          <in>dx.hpp</in>
+          <in>format.hpp</in>
+          <in>generate_mipmaps.hpp</in>
+          <in>gl.hpp</in>
+          <in>gli.hpp</in>
+          <in>image.hpp</in>
+          <in>levels.hpp</in>
+          <in>load.hpp</in>
+          <in>load_dds.hpp</in>
+          <in>load_kmg.hpp</in>
+          <in>load_ktx.hpp</in>
+          <in>make_texture.hpp</in>
+          <in>reduce.hpp</in>
+          <in>sampler.hpp</in>
+          <in>sampler1d.hpp</in>
+          <in>sampler1d_array.hpp</in>
+          <in>sampler2d.hpp</in>
+          <in>sampler2d_array.hpp</in>
+          <in>sampler3d.hpp</in>
+          <in>sampler_cube.hpp</in>
+          <in>sampler_cube_array.hpp</in>
+          <in>save.hpp</in>
+          <in>save_dds.hpp</in>
+          <in>save_kmg.hpp</in>
+          <in>save_ktx.hpp</in>
+          <in>target.hpp</in>
+          <in>texture.hpp</in>
+          <in>texture1d.hpp</in>
+          <in>texture1d_array.hpp</in>
+          <in>texture2d.hpp</in>
+          <in>texture2d_array.hpp</in>
+          <in>texture3d.hpp</in>
+          <in>texture_cube.hpp</in>
+          <in>texture_cube_array.hpp</in>
+          <in>transform.hpp</in>
+          <in>type.hpp</in>
+          <in>view.hpp</in>
         </df>
         <df name="glm">
           <df name="detail">
@@ -189,6 +243,9 @@
       <in>electrode.h</in>
       <in>glm.cpp</in>
       <in>glm.h</in>
+      <in>glm_util.cpp</in>
+      <in>glmimg.cpp</in>
+      <in>glmint.h</in>
       <in>material.cpp</in>
       <in>material.h</in>
       <in>mover.cpp</in>
@@ -206,7 +263,7 @@
     <conf name="Default" type="0">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <platform>2</platform>
+        <platform>4</platform>
       </toolsSet>
       <compile>
         <compiledirpicklist>
