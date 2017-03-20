@@ -98,7 +98,7 @@ void Buble::collisionDetection() {
         this->active = false;
 
 
-        cout << "Buble\t" << true << endl;
+        cout << "Buble\t" << 2 << endl;
 
         return;
 

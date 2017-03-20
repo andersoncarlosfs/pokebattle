@@ -38,7 +38,7 @@ Pokemon::Pokemon(double time, char* file) : Mover(time) {
 
     this->model = glmReadOBJ(file);
 
-    //glmUnitize(this->model);
+    glmUnitize(this->model);
     glmFacetNormals(model);    
 
 }
@@ -104,12 +104,12 @@ void Pokemon::draw() {
 
     glPushMatrix();
     this->material.apply();
-    //glScalef(this->scale.x, this->scale.y, this->scale.z);
+    glScalef(this->scale.x, this->scale.y, this->scale.z);
     glTranslatef(this->position.x, this->position.y, this->position.z);
     glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
-    glmDraw(model, GLM_NONE | GLM_SMOOTH);
+    glmDraw(model, GLM_NONE | GLM_SMOOTH);    
     glPopMatrix();
-
+ 
     if (this->isAttacking()) {
         this->attacks->draw();
     }
