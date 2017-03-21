@@ -4,8 +4,8 @@
     <df root="." name="0">
       <in>attack.cpp</in>
       <in>attack.h</in>
+      <in>bubble.h</in>
       <in>buble.cpp</in>
-      <in>buble.h</in>
       <in>electrode.cpp</in>
       <in>electrode.h</in>
       <in>mover.cpp</in>
@@ -52,9 +52,9 @@
       </item>
       <item path="attack.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="buble.cpp" ex="false" tool="1" flavor2="0">
+      <item path="bubble.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="buble.h" ex="false" tool="3" flavor2="0">
+      <item path="buble.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="electrode.cpp" ex="false" tool="1" flavor2="0">
       </item>

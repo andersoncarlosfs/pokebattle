@@ -23,6 +23,7 @@ public:
     virtual ~Attack();
     virtual void draw();
     virtual void collisionDetection();
+    virtual void reset() = 0;
 private:
 };
 

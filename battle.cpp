@@ -30,6 +30,7 @@
 #include "pokemon.h"
 #include "squirtle.h"
 #include "electrode.h"
+#include "bubble.h"
 
 using namespace std;
 
@@ -56,8 +57,11 @@ double d = 30;
 vector<Pokemon*> pokemons;
 
 //
-Pokemon *squirtle;
-Pokemon *electrode;
+Pokemon* squirtle;
+Pokemon* electrode;
+
+//
+Attack* bubble;
 
 // Pas de temps
 double dt = 0.05;
@@ -195,6 +199,10 @@ void Special_key(int key, int x, int y) {
         case GLUT_KEY_DOWN:
             move_camera(-0.02);
             break;
+            
+        case 'r':
+            
+            bubble->reset();
 
         default:
             break;
@@ -210,7 +218,7 @@ void Special_click(int button, int state, int x, int y) {
 
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 
-        // Attacking pokemons
+        // Attacking pokemons    
         squirtle->attack(electrode);
 
     }
@@ -287,6 +295,9 @@ void InitDynamicParam() {
     //
     pokemons.push_back(squirtle);
     pokemons.push_back(electrode);
+    
+    // Loading attacks
+    squirtle->attacks = bubble = new Bubble(dt, vec3(-2.35, 6.5, 28));
 
 }
 

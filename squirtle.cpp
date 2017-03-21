@@ -12,7 +12,7 @@
  */
 
 #include "squirtle.h"
-#include "buble.h"
+#include "bubble.h"
 
 Squirtle::Squirtle(double time, char* file) : Pokemon(time, file) {
 
@@ -30,8 +30,6 @@ Squirtle::Squirtle(double time, char* file) : Pokemon(time, file) {
     this->rotation.y = 1;
     this->rotation.z = 0;
     this->rotation.w = 135;
-
-    this->attacks = new Buble(time, vec3(-2.35, 6.5, 28));
 
 }
 

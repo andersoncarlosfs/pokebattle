@@ -237,8 +237,8 @@
       <in>attack.cpp</in>
       <in>attack.h</in>
       <in>battle.cpp</in>
+      <in>bubble.h</in>
       <in>buble.cpp</in>
-      <in>buble.h</in>
       <in>electrode.cpp</in>
       <in>electrode.h</in>
       <in>glm.cpp</in>

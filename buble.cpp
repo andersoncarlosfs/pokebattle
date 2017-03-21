@@ -19,11 +19,11 @@
 
 #include <cmath>
 
-#include "buble.h"
+#include "bubble.h"
 
 using namespace std;
 
-Buble::Buble(double time, vec3 position) : Attack(time) {
+Bubble::Bubble(double time, vec3 position) : Attack(time) {
 
     this->material = Material::white;
 
@@ -31,9 +31,7 @@ Buble::Buble(double time, vec3 position) : Attack(time) {
     this->scale.y = 1;
     this->scale.z = 1;
 
-    this->position = position;
-
-    this->position_i = position;
+    this->position_s = this->position_i = this->position = position;
 
     this->velocity.y = 0;
     this->velocity.x = 0;
@@ -55,10 +53,10 @@ Buble::Buble(double time, vec3 position) : Attack(time) {
 
 }
 
-Buble::~Buble() {
+Bubble::~Bubble() {
 }
 
-void Buble::draw() {
+void Bubble::draw() {
 
     Attack::draw();
 
@@ -76,8 +74,8 @@ void Buble::draw() {
 
 }
 
-void Buble::idle() {
-   
+void Bubble::idle() {
+
     if (particles.size() == 0) {
         Attack::idle();
     } else {
@@ -88,10 +86,10 @@ void Buble::idle() {
         }
         this->active = active;
     }
-    
+
 }
 
-void Buble::collisionDetection() {
+void Bubble::collisionDetection() {
 
     Attack::collisionDetection();
 
@@ -118,4 +116,37 @@ void Buble::collisionDetection() {
         }
     }
 
+}
+
+void Bubble::reset() {
+
+    if (!this->active) {
+        this->material = Material::white;
+
+        this->scale.x = 1;
+        this->scale.y = 1;
+        this->scale.z = 1;
+
+        this->position_i = this->position = this->position_s;
+
+        this->velocity.y = 0;
+        this->velocity.x = 0;
+        this->velocity.z = 0;
+
+        this->velocity_i.y = 20;
+        this->velocity_i.x = 20;
+        this->velocity_i.z = -35;
+
+        this->acceleration.y = 0;
+        this->acceleration.x = 0;
+        this->acceleration.z = 0;
+
+        this->acceleration_i.x = 0;
+        this->acceleration_i.y = -Mover::gravity;
+        this->acceleration_i.z = 0;
+
+        this->damping = 0.8;
+
+        this->particles.clear();
+    }
 }

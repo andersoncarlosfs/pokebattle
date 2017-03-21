@@ -129,6 +129,7 @@ void Pokemon::collisionDetection() {
 
 void Pokemon::attack(Pokemon* target) {
     if (this->attacks != 0) {
+        this->attacks->reset();
         this->attacks->target = target;
         this->attacks->active = true;
     }

@@ -11,22 +11,24 @@
  * Created on March 16, 2017, 11:16 PM
  */
 
-#ifndef BUBLE_H
-#define BUBLE_H
+#ifndef BUBBLE_H
+#define BUBBLE_H
 
 #include "attack.h"
 #include "particle.h"
 
-class Buble : public Attack {
+class Bubble : public Attack {
 public:    
-    Buble(double, vec3);
-    virtual ~Buble();
+    Bubble(double, vec3);
+    virtual ~Bubble();
     void draw();
     void idle();
     void collisionDetection();
+    void reset();
 private:
+    vec3 position_s;
     vector<Particle> particles;
 };
 
-#endif /* BUBLE_H */
+#endif /* BUBBLE_H */
 
