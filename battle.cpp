@@ -217,10 +217,8 @@ void Special_key(int key, int x, int y) {
 void Special_click(int button, int state, int x, int y) {
 
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-
         // Attacking pokemons    
         squirtle->attack(electrode);
-
     }
 
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
