@@ -52,7 +52,12 @@ float vect_x = 0.0;
 float vect_z = 0.0;
 double d = 30;
 
-vector<Pokemon> pokemons;
+//
+vector<Pokemon*> pokemons;
+
+//
+Pokemon *squirtle;
+Pokemon *electrode;
 
 // Pas de temps
 double dt = 0.05;
@@ -146,9 +151,10 @@ void DrawGLScene() {
     //////////////////////////////////////////////////
 
     for (int i = 0; i < pokemons.size(); i++) {
-        pokemons[i].draw();
+
+        pokemons[i]->draw();
         // Attacking pokemons
-        // # pokemons[i].attack(&pokemons[(i + 1) % pokemons.size()]);
+
     }
 
     // Permutation des buffers
@@ -168,7 +174,7 @@ void keyPressed(unsigned char key, int x, int y) {
     }
 }
 
-/* Fonction de gestion du clavier spetial */
+/* Fonction de gestion du clavier special */
 void Special_key(int key, int x, int y) {
 
     switch (key) {
@@ -196,6 +202,22 @@ void Special_key(int key, int x, int y) {
 
     glutPostRedisplay();
     glutSwapBuffers();
+
+}
+
+/* Fonction de gestion du clavier special */
+void Special_click(int button, int state, int x, int y) {
+
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+
+        // Attacking pokemons
+        squirtle->attack(electrode);
+
+    }
+
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
+
+    }
 
 }
 
@@ -258,20 +280,21 @@ void InitDynamicParam() {
 
     // Loading pokemons
     // Squirtle
-    pokemons.push_back(Squirtle(dt, "models/Squirtle/Squirtle.obj"));
+    squirtle = new Squirtle(dt, "models/Squirtle/Squirtle.obj");
     // Electrode
-    pokemons.push_back(Electrode(dt, "models/Electrode/Electrode.obj"));
-
-    // #
-    pokemons[0].attack(&pokemons[1]);
+    electrode = new Electrode(dt, "models/Electrode/Electrode.obj");
     
+    //
+    pokemons.push_back(squirtle);
+    pokemons.push_back(electrode);
+
 }
 
 /* Défintion de la fonction IDLE */
 void idle_function() {
 
     for (int i = 0; i < pokemons.size(); i++) {
-        pokemons[i].idle();
+        pokemons[i]->idle();
     }
 
 }
@@ -313,6 +336,9 @@ int main(int argc, char **argv) {
 
     /* Spécification de la fontion special de gestion du clavier */
     glutSpecialFunc(Special_key);
+
+    /* Spécification de la fontion special de gestion de la souris */
+    glutMouseFunc(Special_click);
 
     /* Intitialisation des paramètres de l'affichage et de la fenêtre */
     InitGL(640, 480);

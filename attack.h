@@ -18,7 +18,6 @@
 
 class Attack : public Mover {
 public:
-    bool active;
     Mover* target;
     Attack(double);
     virtual ~Attack();

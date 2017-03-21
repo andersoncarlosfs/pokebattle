@@ -47,8 +47,8 @@ Buble::Buble(double time, vec3 position) : Attack(time) {
     this->acceleration.x = 0;
     this->acceleration.z = 0;
 
-    this->acceleration_i.y = 0;
-    this->acceleration_i.x = -Mover::gravity;
+    this->acceleration_i.x = 0;
+    this->acceleration_i.y = -Mover::gravity;
     this->acceleration_i.z = 0;
 
     this->damping = 0.8;
@@ -62,46 +62,60 @@ void Buble::draw() {
 
     Attack::draw();
 
-    glPushMatrix();
-    this->material.apply();
-    glTranslatef(this->position.x, this->position.y, this->position.z);
-    glutSolidSphere(0.3, 50, 50);
-    glPopMatrix();
+    if (particles.size() == 0) {
+        glPushMatrix();
+        this->material.apply();
+        glTranslatef(this->position.x, this->position.y, this->position.z);
+        glutSolidSphere(0.3, 50, 50);
+        glPopMatrix();
+    } else {
+        for (int i = 0; i < particles.size(); i++) {
+            particles[i].draw();
+        }
+    }
 
 }
-#include <iostream>
+
+void Buble::idle() {
+   
+    if (particles.size() == 0) {
+        Attack::idle();
+    } else {
+        bool active = false;
+        for (int i = 0; i < particles.size(); i++) {
+            particles[i].idle();
+            active |= particles[i].active;
+        }
+        this->active = active;
+    }
+    
+}
 
 void Buble::collisionDetection() {
 
     Attack::collisionDetection();
 
+    bool explode = false;
+
     if (this->position.y < 0.3) {
 
-        this->active = false;
-
-        return;
+        explode = true;
 
     }
-
-    cout << "x\t" << this->position.x << "\t" << this->target->position.x * this->target->scale.x << endl;
-    cout << "y\t" << this->position.y << "\t" << this->target->position.y * this->target->scale.y << endl;
-    cout << "z\t" << this->position.z << "\t" << this->target->position.z * this->target->scale.z << endl;
-    cout << "v\t" << sqrt(pow((this->position.x - (this->target->position.x * this->target->scale.x)), 2)
-            + pow((this->position.y - (this->target->position.y * this->target->scale.y)), 2)
-            + pow((this->position.z - (this->target->position.z * this->target->scale.z)), 2)) << endl;
 
     if ((sqrt(pow((this->position.x - (this->target->position.x * this->target->scale.x)), 2)
             + pow((this->position.y - (this->target->position.y * this->target->scale.y)), 2)
             + pow((this->position.z - (this->target->position.z * this->target->scale.z)), 2)))
             < (2 * 0.3)) {
 
-        this->active = false;
+        explode = true;
 
+    }
 
-        cout << "Buble\t" << 2 << endl;
-
-        return;
-
+    if (explode) {
+        for (int i = 0; i < 250; i++) {
+            particles.push_back(Particle(this->time, this->position));
+        }
     }
 
 }

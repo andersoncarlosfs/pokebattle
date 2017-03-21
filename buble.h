@@ -15,14 +15,17 @@
 #define BUBLE_H
 
 #include "attack.h"
+#include "particle.h"
 
 class Buble : public Attack {
 public:    
-    Buble(double, vec3 position);
+    Buble(double, vec3);
     virtual ~Buble();
     void draw();
+    void idle();
     void collisionDetection();
 private:
+    vector<Particle> particles;
 };
 
 #endif /* BUBLE_H */
