@@ -50,7 +50,7 @@ Bubble::Bubble(double time, vec3 position) : Attack(time) {
     this->acceleration_i.z = 0;
 
     this->damping = 0.8;
-    
+
     this->size = ((rand() % 4) / 10.0) + 0.1;
 
 }
@@ -60,7 +60,9 @@ Bubble::~Bubble() {
 
 void Bubble::draw() {
 
-    Attack::draw();
+    if (!this->active) {
+        return;
+    }
 
     if (particles.size() == 0) {
         glPushMatrix();
@@ -77,6 +79,10 @@ void Bubble::draw() {
 }
 
 void Bubble::idle() {
+
+    if (this->size < 0.5) {
+        this->size += ((rand() % 49) / 100.0) + 0.01;
+    }
 
     if (particles.size() == 0) {
         Attack::idle();
@@ -96,33 +102,42 @@ void Bubble::idle() {
 
 void Bubble::collisionDetection() {
 
-    if (this->size < 0.5) {
-
-        this->size += ((rand() % 49) / 100.0) + 0.01;
-
-    }
-    
-    if (particles.size() != 0) {
+    if (this->target == 0) {
         return;
     }
 
-    if (this->position.y < 0.5) {
+    if (this->particles.size() != 0) {
+        return;
+    }
+
+    if (this->position.y < this->size) {
 
         this->active = false;
 
     }
 
-    Attack::collisionDetection();
+    float distance = sqrt(pow((this->position.x - (this->target->position.x)), 2)
+            + pow((this->position.y - (this->target->position.y + this->target->dimensions.y * 0.5)), 2)
+            + pow((this->position.z - (this->target->position.z)), 2));
 
     float radius = max(this->target->dimensions.x, max(this->target->dimensions.y, this->target->dimensions.z)) * 0.5;
 
-    if ((sqrt(pow((this->position.x - (this->target->position.x)), 2)
-            + pow((this->position.y - (this->target->position.y + this->target->dimensions.y * 0.5)), 2)
-            + pow((this->position.z - (this->target->position.z)), 2)))
-            < (radius - 2 * this->size)) {
+    float collision = radius - 2 * this->size;
 
-        for (int i = 0; i < 500; i++) {
-            particles.push_back(Particle(this->time, this->position));
+    if (distance < collision) {
+
+        if (((collision - distance) < this->size) && this->target->isDefending()) {
+
+            for (int i = 0; i < 500; i++) {
+
+                particles.push_back(Particle(this->time, this->position));
+
+            }
+
+        } else {
+
+            this->active = this->target->active = false;
+            
         }
 
     }

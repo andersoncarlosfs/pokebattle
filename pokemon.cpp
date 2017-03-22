@@ -108,6 +108,10 @@ Pokemon::~Pokemon() {
 //http://www.sgglnow.com/tutorial-10-using-textures-for-color/
 
 void Pokemon::draw() {
+    
+    if(!this->active){
+        return;
+    }
 
     glPushMatrix();
     this->material.apply();
@@ -127,9 +131,15 @@ void Pokemon::draw() {
 }
 
 void Pokemon::idle() {
+    
+    if(!this->active){
+        return;
+    }
+    
     if (this->isAttacking()) {
         this->attacks->idle();
     }
+    
     //cout << "Pokemon" << "\t" << "idle()" << endl;
 }
 

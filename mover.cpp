@@ -16,17 +16,17 @@
 const float Mover::gravity = 9.8; // m/s^2
 
 Mover::Mover(double time) : Object() {
-    
-    this->active = true;
-    
     this->time = time;
-    
 }
 
 Mover::~Mover() {
 }
 
 void Mover::idle() {
+
+    if (!this->active) {
+        return;
+    }
 
     ////////////////////////////////////
     // Numerical integration

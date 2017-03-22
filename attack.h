@@ -15,14 +15,15 @@
 #define ATTACK_H
 
 #include "mover.h"
+#include "pokemon.h"
+
+class Pokemon;
 
 class Attack : public Mover {
 public:
-    Mover* target;
+    Pokemon* target;
     Attack(double);
     virtual ~Attack();
-    virtual void draw();
-    virtual void collisionDetection();
     virtual void reset() = 0;
 private:
 };

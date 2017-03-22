@@ -14,19 +14,8 @@
 #include "attack.h"
 
 Attack::Attack(double time) : Mover(time) {
+    this->active = false;
 }
 
 Attack::~Attack() {
-}
-
-void Attack::draw() {
-    if (!this->active) {
-        return;
-    }
-}
-
-void Attack::collisionDetection() {
-    if (!this->active) {
-        return;
-    }
 }
