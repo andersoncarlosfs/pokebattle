@@ -138,11 +138,17 @@ void Bubble::collisionDetection() {
 
     if (explode) {
 
-        for (int i = 0; i < 500; i++) {
+        this->explode();
 
-            particles.push_back(Particle(this->time, this->position, this->size));
+    }
 
-        }
+}
+
+void Bubble::explode() {
+
+    for (int i = 0; i < 500; i++) {
+
+        particles.push_back(Particle(this->time, this->position, this->size));
 
     }
 

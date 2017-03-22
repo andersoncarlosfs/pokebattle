@@ -66,7 +66,7 @@ Particle::Particle(double time, vec3 position, double size) : Mover(time) {
     
     this->direction = ((0.0 + (360.0 - 0.0) * rand()) * atan(1) * 4) / 180.0;
 
-    this->size = (fmod(rand(), (size / 2)) / size/2) + 0.001;
+    this->size = fmod(rand(), (size / 4.0)) + 0.001;
 
 }
 

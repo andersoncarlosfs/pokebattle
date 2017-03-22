@@ -26,6 +26,7 @@ public:
     void draw();
     void idle();
     void collisionDetection();
+    void explode();
     void reset();
 private:
     vec3 position_s;    
