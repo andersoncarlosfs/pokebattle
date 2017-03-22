@@ -21,6 +21,7 @@ public:
     Squirtle(double, char*);
     virtual ~Squirtle();
     void defend(bool);
+    bool isDefending();
 private:
 };
 

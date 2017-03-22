@@ -33,6 +33,8 @@
 using namespace std;
  */
 
+class Attack;
+
 class Pokemon : public Mover {
 public:
     GLMmodel* model;
@@ -44,14 +46,15 @@ public:
     void collisionDetection();
     virtual void attack(Pokemon*);
     virtual void defend(bool) = 0;
+    virtual bool isAttacking();
+    virtual bool isDefending() = 0;
 private:
     /*
        vector<vec3> vertexes;
        vector<vec2> textures;
        vector<vec3> normals;
        vector<GLushort> faces;
-     */
-    virtual bool isAttacking();
+     */    
 };
 
 #endif /* POKEMON_H */

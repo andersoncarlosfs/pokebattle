@@ -31,6 +31,8 @@ Electrode::Electrode(double time, char* file) : Pokemon(time, file) {
     this->rotation.w = -27.5;
     
     this->attacks = 0;
+    
+    this->status = false;
 
 }
 
@@ -39,12 +41,19 @@ Electrode::~Electrode() {
 
 void Electrode::defend(bool defend) {
 
-    if(defend) {
+    if(this->status = defend) {
         this->material = Material::grey;
     } else {
         this->material = Material::red;
     }
     
 }
+
+bool Electrode::isDefending() {
+    
+    return this->status;
+    
+}
+
 
 

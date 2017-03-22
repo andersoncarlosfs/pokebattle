@@ -38,3 +38,8 @@ Squirtle::~Squirtle() {
 void Squirtle::defend(bool defend) {
 
 }
+
+bool Squirtle::isDefending() {
+
+}
+

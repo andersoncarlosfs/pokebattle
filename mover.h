@@ -24,7 +24,6 @@ public:
     vec3 position_i;
     vec3 velocity_i;
     vec3 acceleration_i;
-    bool active;
     Mover(double);
     virtual ~Mover();
     virtual void idle();

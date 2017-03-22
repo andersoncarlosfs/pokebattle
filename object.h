@@ -30,6 +30,7 @@ public:
     vec4 rotation;
     vec3 velocity;
     vec3 acceleration;
+    bool active;
     Object();
     virtual ~Object();
     virtual void draw() = 0;

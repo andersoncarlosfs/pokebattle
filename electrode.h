@@ -21,7 +21,9 @@ public:
     Electrode(double, char*);
     virtual ~Electrode();
     void defend(bool);
+    bool isDefending();
 private:
+    bool status;
 };
 
 #endif /* ELECTRODE_H */
