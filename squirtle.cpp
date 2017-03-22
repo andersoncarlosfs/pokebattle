@@ -12,7 +12,6 @@
  */
 
 #include "squirtle.h"
-#include "bubble.h"
 
 Squirtle::Squirtle(double time, char* file) : Pokemon(time, file) {
 

@@ -252,6 +252,8 @@
       <in>mover.h</in>
       <in>object.cpp</in>
       <in>object.h</in>
+      <in>particle.cpp</in>
+      <in>particle.h</in>
       <in>pokemon.cpp</in>
       <in>pokemon.h</in>
       <in>squirtle.cpp</in>

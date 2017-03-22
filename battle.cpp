@@ -169,13 +169,40 @@ void DrawGLScene() {
 /* Fonction de gestion du clavier */
 void keyPressed(unsigned char key, int x, int y) {
 
-    if (key == ESCAPE) {
-        /* Eteindre la fenêtre */
-        glutDestroyWindow(window);
-
-        /* Sortire du programme */
-        exit(0);
+    switch (key) {
+        
+        case ESCAPE :            
+            /* Eteindre la fenêtre */
+            glutDestroyWindow(window);
+            /* Sortir du programme */
+            exit(0);
+            break;
+            
+        case 'd' :   
+            electrode->material = Material::grey;
+            break;
+            
     }
+    
+    glutPostRedisplay();
+    glutSwapBuffers();
+    
+}
+
+/* Fonction de gestion du clavier */
+void keyReleased(unsigned char key, int x, int y) {
+
+    switch (key) {
+                           
+        case 'd' :  
+            electrode->material = Material::red;
+            break;
+            
+    }
+    
+    glutPostRedisplay();
+    glutSwapBuffers();
+    
 }
 
 /* Fonction de gestion du clavier special */
@@ -198,11 +225,7 @@ void Special_key(int key, int x, int y) {
 
         case GLUT_KEY_DOWN:
             move_camera(-0.02);
-            break;
-            
-        case 'r':
-            
-            bubble->reset();
+            break;           
 
         default:
             break;
@@ -212,6 +235,15 @@ void Special_key(int key, int x, int y) {
     glutSwapBuffers();
 
 }
+
+/* Fonction de gestion du clavier special */
+void SpecialUp_key(int key, int x, int y) {
+
+    glutPostRedisplay();
+    glutSwapBuffers();
+
+}
+
 
 /* Fonction de gestion du clavier special */
 void Special_click(int button, int state, int x, int y) {
@@ -328,25 +360,31 @@ int main(int argc, char **argv) {
     glutInitWindowPosition(0, 0);
 
     /* Ouverture de la fenêtre */
-    window = glutCreateWindow("TD Animation 3D");
+    window = glutCreateWindow("Pokemon Battle");
 
-    /* Spécification de la fontion de dessin */
+    /* Spécification de la fonction de dessin */
     glutDisplayFunc(&DrawGLScene);
 
     /* Spécification de la routine de fond */
 
     glutIdleFunc(idle_function);
 
-    /* Spécification de la fontion de redimensionnement */
+    /* Spécification de la fonction de redimensionnement */
     glutReshapeFunc(&ReSizeGLScene);
 
-    /* Spécification de la fontion de de gestion du clavier */
+    /* Spécification de la fonction de de gestion du clavier */
     glutKeyboardFunc(&keyPressed);
+    
+    /* Spécification de la fonction de de gestion du clavier */
+    glutKeyboardUpFunc(&keyReleased);
 
-    /* Spécification de la fontion special de gestion du clavier */
+    /* Spécification de la fonction special de gestion du clavier */
     glutSpecialFunc(Special_key);
 
-    /* Spécification de la fontion special de gestion de la souris */
+    /* Spécification de la fonction special de gestion du clavier */
+    glutSpecialUpFunc(SpecialUp_key);
+    
+    /* Spécification de la fonction special de gestion de la souris */
     glutMouseFunc(Special_click);
 
     /* Intitialisation des paramètres de l'affichage et de la fenêtre */
