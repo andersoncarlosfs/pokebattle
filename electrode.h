@@ -20,6 +20,7 @@ class Electrode : public Pokemon {
 public:
     Electrode(double, char*);
     virtual ~Electrode();
+    void defend(bool);
 private:
 };
 

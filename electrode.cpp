@@ -37,3 +37,14 @@ Electrode::Electrode(double time, char* file) : Pokemon(time, file) {
 Electrode::~Electrode() {
 }
 
+void Electrode::defend(bool defend) {
+
+    if(defend) {
+        this->material = Material::grey;
+    } else {
+        this->material = Material::red;
+    }
+    
+}
+
+

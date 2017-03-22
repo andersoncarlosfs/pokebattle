@@ -43,6 +43,7 @@ public:
     void idle();
     void collisionDetection();
     virtual void attack(Pokemon*);
+    virtual void defend(bool) = 0;
 private:
     /*
        vector<vec3> vertexes;

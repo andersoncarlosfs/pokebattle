@@ -35,3 +35,6 @@ Squirtle::Squirtle(double time, char* file) : Pokemon(time, file) {
 Squirtle::~Squirtle() {
 }
 
+void Squirtle::defend(bool defend) {
+
+}

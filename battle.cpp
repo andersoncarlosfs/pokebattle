@@ -179,7 +179,7 @@ void keyPressed(unsigned char key, int x, int y) {
             break;
             
         case 'd' :   
-            electrode->material = Material::grey;
+            electrode->defend(true);
             break;
             
     }
@@ -195,7 +195,7 @@ void keyReleased(unsigned char key, int x, int y) {
     switch (key) {
                            
         case 'd' :  
-            electrode->material = Material::red;
+            electrode->defend(false);
             break;
             
     }
