@@ -62,6 +62,10 @@ Bubble::~Bubble() {
 
 void Bubble::draw() {
 
+    if (!this->active) {
+        return;
+    }
+
     if (particles.size() == 0) {
         glPushMatrix();
         this->material.apply();
@@ -100,9 +104,7 @@ void Bubble::idle() {
 
 void Bubble::collisionDetection() {
 
-    if (this->target == 0) {
-        return;
-    }
+    bool explode = false;
 
     if (this->particles.size() != 0) {
         return;
@@ -110,11 +112,7 @@ void Bubble::collisionDetection() {
 
     if (this->position.y < this->size) {
 
-        for (int i = 0; i < 500; i++) {
-
-            particles.push_back(Particle(this->time, this->position, this->size));
-
-        }
+        explode = true;
 
     }
 
@@ -131,8 +129,14 @@ void Bubble::collisionDetection() {
         if (!(((collision - distance) < this->size) && this->target->isDefending())) {
 
             this->target->active = false;
-            
+
         }
+
+        explode = true;
+
+    }
+
+    if (explode) {
 
         for (int i = 0; i < 500; i++) {
 
