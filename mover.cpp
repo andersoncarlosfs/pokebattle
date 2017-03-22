@@ -17,6 +17,7 @@ const float Mover::gravity = 9.8; // m/s^2
 
 Mover::Mover(double time) {
     this->time = time;
+    this->active = false;
 }
 
 Mover::~Mover() {

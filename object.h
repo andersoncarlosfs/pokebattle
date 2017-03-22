@@ -25,6 +25,7 @@ class Object {
 public:
     Material::Material material;
     vec3 scale;
+    vec3 dimensions;
     vec3 position;
     vec4 rotation;
     vec3 velocity;

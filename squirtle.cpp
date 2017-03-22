@@ -18,13 +18,13 @@ Squirtle::Squirtle(double time, char* file) : Pokemon(time, file) {
 
     this->material = Material::blue;
 
-    this->scale.x = 5;
-    this->scale.y = 5;
-    this->scale.z = 5;
+    //this->scale.x = 5;
+    //this->scale.y = 5;
+    //this->scale.z = 5;
 
-    this->position.x = -1.2;
+    this->position.x = -6;
     this->position.y = 1;
-    this->position.z = 6;
+    this->position.z = 30;
 
     this->rotation.x = 0;
     this->rotation.y = 1;

@@ -38,8 +38,14 @@ Pokemon::Pokemon(double time, char* file) : Mover(time) {
 
     this->model = glmReadOBJ(file);
 
-    glmUnitize(this->model);
-    glmFacetNormals(model);    
+    //glmUnitize(this->model);
+    glmFacetNormals(model);
+    
+    GLfloat dimensions[3];    
+    glmDimensions(model, dimensions);
+    this->dimensions.x = dimensions[0];
+    this->dimensions.y = dimensions[1];
+    this->dimensions.z = dimensions[2];
 
 }
 
@@ -100,16 +106,20 @@ Pokemon::~Pokemon() {
 }
 
 //http://www.sgglnow.com/tutorial-10-using-textures-for-color/
+
 void Pokemon::draw() {
 
     glPushMatrix();
     this->material.apply();
-    glScalef(this->scale.x, this->scale.y, this->scale.z);
+    //glScalef(this->scale.x, this->scale.y, this->scale.z);
     glTranslatef(this->position.x, this->position.y, this->position.z);
     glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
-    glmDraw(model, GLM_NONE | GLM_SMOOTH);    
+    //model->position[0] = this->position.x;
+    //model->position[1] = this->position.y;
+    //model->position[2] = this->position.z;    
+    glmDraw(model, GLM_NONE | GLM_SMOOTH);
     glPopMatrix();
- 
+
     if (this->isAttacking()) {
         this->attacks->draw();
     }

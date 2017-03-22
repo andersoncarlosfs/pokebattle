@@ -17,13 +17,13 @@ Electrode::Electrode(double time, char* file) : Pokemon(time, file) {
 
     this->material = Material::red;
 
-    this->scale.x = 10;
-    this->scale.y = 10;
-    this->scale.z = 10;
+    //this->scale.x = 10;
+    //this->scale.y = 10;
+    //this->scale.z = 10;
 
-    this->position.x = 1.9;
+    this->position.x = 19;
     this->position.y = 1;
-    this->position.z = -1;
+    this->position.z = -10;
 
     this->rotation.x = 1;
     this->rotation.y = 1;

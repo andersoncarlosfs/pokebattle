@@ -295,7 +295,7 @@ void InitDynamicParam() {
     pokemons.push_back(electrode);
     
     // Loading attacks
-    squirtle->attacks = bubble = new Bubble(dt, vec3(-2.35, 6.5, 28));
+    squirtle->attacks = bubble = new Bubble(dt, vec3(-4, 4.25, 29));
 
 }
 
