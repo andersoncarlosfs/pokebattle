@@ -5,7 +5,9 @@
       <in>attack.cpp</in>
       <in>attack.h</in>
       <in>bubble.h</in>
+      <in>bubbles.h</in>
       <in>buble.cpp</in>
+      <in>bubles.cpp</in>
       <in>electrode.cpp</in>
       <in>electrode.h</in>
       <in>mover.cpp</in>
@@ -54,7 +56,11 @@
       </item>
       <item path="bubble.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="bubbles.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="buble.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bubles.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="electrode.cpp" ex="false" tool="1" flavor2="0">
       </item>

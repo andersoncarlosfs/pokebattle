@@ -40,8 +40,8 @@ Pokemon::Pokemon(double time, char* file) : Mover(time) {
 
     //glmUnitize(this->model);
     glmFacetNormals(model);
-    
-    GLfloat dimensions[3];    
+
+    GLfloat dimensions[3];
     glmDimensions(model, dimensions);
     this->dimensions.x = dimensions[0];
     this->dimensions.y = dimensions[1];
@@ -108,8 +108,8 @@ Pokemon::~Pokemon() {
 //http://www.sgglnow.com/tutorial-10-using-textures-for-color/
 
 void Pokemon::draw() {
-    
-    if(!this->active){
+
+    if (!this->active) {
         return;
     }
 
@@ -131,15 +131,15 @@ void Pokemon::draw() {
 }
 
 void Pokemon::idle() {
-    
-    if(!this->active){
+
+    if (!this->active) {
         return;
     }
-    
+
     if (this->isAttacking()) {
         this->attacks->idle();
     }
-    
+
     //cout << "Pokemon" << "\t" << "idle()" << endl;
 }
 
@@ -149,9 +149,9 @@ void Pokemon::collisionDetection() {
 
 void Pokemon::attack(Pokemon* target) {
     if (this->attacks != 0) {
-        this->attacks->reset();
         this->attacks->target = target;
-        this->attacks->active = true;
+        this->attacks->reset();
+        this->attacks->active = true;        
     }
 }
 

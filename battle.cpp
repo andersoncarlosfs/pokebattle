@@ -31,6 +31,7 @@
 #include "squirtle.h"
 #include "electrode.h"
 #include "bubble.h"
+#include "bubbles.h"
 
 using namespace std;
 
@@ -62,6 +63,7 @@ Pokemon* electrode;
 
 //
 Attack* bubble;
+Attack* bubbles;
 
 // Pas de temps
 double dt = 0.01;
@@ -327,8 +329,9 @@ void InitDynamicParam() {
     pokemons.push_back(electrode);
     
     // Loading attacks
-    squirtle->attacks = bubble = new Bubble(dt, vec3(-4.25, 3.45, 28.05));
-
+    bubble = new Bubble(dt, vec3(-4.25, 3.45, 28.05));
+    squirtle->attacks = bubbles = new Bubbles(dt, 100, vec3(-4.25, 3.45, 28.05));
+    
 }
 
 /* Défintion de la fonction IDLE */

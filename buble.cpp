@@ -51,7 +51,9 @@ Bubble::Bubble(double time, vec3 position) : Attack(time) {
 
     this->damping = 0.8;
 
-    this->size = ((rand() % 4) / 10.0) + 0.1;
+    this->size = ((rand() % 9) / 10.0) + 0.1;
+    
+    this->size_s = ((rand() % 9) / 10.0) + 0.1;    
 
 }
 
@@ -80,7 +82,7 @@ void Bubble::draw() {
 
 void Bubble::idle() {
 
-    if (this->size < 1) {
+    if (this->size < this->size_s) {
         this->size += ((rand() % 49) / 100.0) + 0.01;
     }
 

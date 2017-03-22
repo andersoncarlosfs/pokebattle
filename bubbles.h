@@ -5,32 +5,29 @@
  */
 
 /* 
- * File:   buble.h
+ * File:   bubles.h
  * Author: deboramorita
  *
  * Created on March 16, 2017, 11:16 PM
  */
 
-#ifndef BUBBLE_H
-#define BUBBLE_H
+#ifndef BUBBLES_H
+#define BUBBLES_H
 
 #include "attack.h"
-#include "particle.h"
+#include "bubble.h"
 
-class Bubble : public Attack {
-public:
-    double size;
-    double size_s;
-    Bubble(double, vec3);
-    virtual ~Bubble();
+class Bubbles : public Attack {
+public:        
+    Bubbles(double, int, vec3);
+    virtual ~Bubbles();
     void draw();
     void idle();
     void collisionDetection();
     void reset();
 private:
-    vec3 position_s;    
-    vector<Particle> particles;
+    vector<Bubble> bubbles;
 };
 
-#endif /* BUBBLE_H */
+#endif /* BUBBLES_H */
 
