@@ -85,7 +85,7 @@ void Bubble::idle() {
             active |= particles[i].active;
         }
         this->active = active;
-        if(!this->active) {
+        if (!this->active) {
             this->particles.clear();
         }
     }
@@ -97,30 +97,26 @@ void Bubble::collisionDetection() {
     if (particles.size() != 0) {
         return;
     }
-    
-    Attack::collisionDetection();
-
-    bool explode = false;
 
     if (this->position.y < 0.3) {
 
-        explode = true;
+        this->active = false;
 
     }
+
+    Attack::collisionDetection();
+
+    float radius = max(this->target->dimensions.x, max(this->target->dimensions.y, this->target->dimensions.z)) * 0.5;
 
     if ((sqrt(pow((this->position.x - (this->target->position.x)), 2)
             + pow((this->position.y - (this->target->position.y)), 2)
             + pow((this->position.z - (this->target->position.z)), 2)))
-            < (2 * 0.3)) {
+            < (radius - 0.3)) {
 
-        explode = true;
-
-    }
-
-    if (explode) {
         for (int i = 0; i < 250; i++) {
             particles.push_back(Particle(this->time, this->position));
         }
+
     }
 
 }

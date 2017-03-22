@@ -23,7 +23,7 @@ Squirtle::Squirtle(double time, char* file) : Pokemon(time, file) {
     //this->scale.z = 5;
 
     this->position.x = -6;
-    this->position.y = 1;
+    this->position.y = 0;
     this->position.z = 30;
 
     this->rotation.x = 0;

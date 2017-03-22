@@ -57,7 +57,7 @@ Particle::Particle(double time, vec3 position) : Mover(time) {
 
     this->lifetime = rand() % 100;
 
-    this->decay = 1;
+    this->decay = rand() % 1;
 
 }
 
