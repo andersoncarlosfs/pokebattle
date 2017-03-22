@@ -119,7 +119,7 @@ void Bubble::collisionDetection() {
     if ((sqrt(pow((this->position.x - (this->target->position.x)), 2)
             + pow((this->position.y - (this->target->position.y + this->target->dimensions.y * 0.5)), 2)
             + pow((this->position.z - (this->target->position.z)), 2)))
-            < (radius - this->size)) {
+            < (radius - 2 * this->size)) {
 
         for (int i = 0; i < 500; i++) {
             particles.push_back(Particle(this->time, this->position));
