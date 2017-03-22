@@ -24,7 +24,7 @@ public:
     float decay; 
     float direction;
     double size;
-    Particle(double, vec3);
+    Particle(double, vec3, double);
     virtual ~Particle();
     void idle();
     void draw();

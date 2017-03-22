@@ -52,8 +52,8 @@ Bubble::Bubble(double time, vec3 position) : Attack(time) {
     this->damping = 0.8;
 
     this->size = ((rand() % 9) / 10.0) + 0.1;
-    
-    this->size_s = ((rand() % 9) / 10.0) + 0.1;    
+
+    this->size_s = ((rand() % 9) / 10.0) + 0.1;
 
 }
 
@@ -116,6 +116,12 @@ void Bubble::collisionDetection() {
 
         this->active = false;
 
+        for (int i = 0; i < 500; i++) {
+
+            particles.push_back(Particle(this->time, this->position, this->size));
+
+        }
+
     }
 
     float distance = sqrt(pow((this->position.x - (this->target->position.x)), 2)
@@ -128,18 +134,15 @@ void Bubble::collisionDetection() {
 
     if (distance < collision) {
 
-        if (((collision - distance) < this->size) && this->target->isDefending()) {
-
-            for (int i = 0; i < 500; i++) {
-
-                particles.push_back(Particle(this->time, this->position));
-
-            }
-
-        } else {
+        if (!(((collision - distance) < this->size) && this->target->isDefending())) {
 
             this->active = this->target->active = false;
-            
+        }
+
+        for (int i = 0; i < 500; i++) {
+
+            particles.push_back(Particle(this->time, this->position, this->size));
+
         }
 
     }

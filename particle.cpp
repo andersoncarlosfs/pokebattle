@@ -24,7 +24,7 @@
 
 #include "particle.h"
 
-Particle::Particle(double time, vec3 position) : Mover(time) {
+Particle::Particle(double time, vec3 position, double size) : Mover(time) {
 
     float angle = ((60.0 + (70.0 - 60.0) * rand()) * atan(1) * 4) / 180.0;
 
@@ -66,7 +66,7 @@ Particle::Particle(double time, vec3 position) : Mover(time) {
     
     this->direction = ((0.0 + (360.0 - 0.0) * rand()) * atan(1) * 4) / 180.0;
 
-    this->size = ((rand() % 499) / 1000.0) + 0.001;
+    this->size = (fmod(rand(), (size / 2)) / size/2) + 0.001;
 
 }
 
