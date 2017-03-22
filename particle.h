@@ -21,6 +21,7 @@ class Particle : public Mover {
 public:
     float lifetime;
     float decay;
+    double size;
     Particle(double, vec3);
     virtual ~Particle();
     void idle();

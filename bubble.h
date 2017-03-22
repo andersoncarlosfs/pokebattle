@@ -19,6 +19,7 @@
 
 class Bubble : public Attack {
 public:    
+    double size;
     Bubble(double, vec3);
     virtual ~Bubble();
     void draw();

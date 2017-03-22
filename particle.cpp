@@ -20,6 +20,7 @@
 #endif
 
 #include <cstdlib>
+#include <cmath>
 
 #include "particle.h"
 
@@ -55,9 +56,11 @@ Particle::Particle(double time, vec3 position) : Mover(time) {
 
     this->active = true;
 
-    this->lifetime = rand() % 100;
+    this->lifetime = rand() % 99 + 1;
 
-    this->decay = rand() % 1;
+    this->decay = fmod(rand(), this->lifetime * 0.5) + 1;
+
+    this->size = ((rand() % 199) / 1000.0) + 0.001;
 
 }
 
@@ -72,13 +75,13 @@ void Particle::idle() {
 
         this->lifetime -= this->decay;
 
-        this->position.x += rand() % 10 + (-4);
-        this->position.y += rand() % 10 + (-4);
-        this->position.z += rand() % 10 + (-4);
+        this->position.x += rand() % 10 -5;
+        this->position.y += rand() % 10 -5;
+        this->position.z += rand() % 10 -5;
 
-        this->velocity.x += rand() % 10 + (-4);
-        this->velocity.y += rand() % 10 + (-4);
-        this->velocity.z += rand() % 10 + (-4);
+        this->velocity.x += rand() % 10 -5;
+        this->velocity.y += rand() % 10 -5;
+        this->velocity.z += rand() % 10 -5;
 
     } else {
 
@@ -95,18 +98,18 @@ void Particle::draw() {
         this->material.apply();
         glScalef(this->scale.x, this->scale.y, this->scale.z);
         glTranslatef(this->position.x, this->position.y, this->position.z);
-        glutSolidSphere(0.2, 50, 50);
+        glutSolidSphere(this->size, 50, 50);
         glPopMatrix();
     }
 
 }
 
 void Particle::collisionDetection() {
-    
+
     if (this->position.y < 0.2) {
 
         this->active = false;
 
     }
-    
+
 }

@@ -64,7 +64,7 @@ Pokemon* electrode;
 Attack* bubble;
 
 // Pas de temps
-double dt = 0.05;
+double dt = 0.01;
 
 /* code ASCII pour la touche escape*/
 #define ESCAPE 27
@@ -295,7 +295,7 @@ void InitDynamicParam() {
     pokemons.push_back(electrode);
     
     // Loading attacks
-    squirtle->attacks = bubble = new Bubble(dt, vec3(-4, 4.25, 29));
+    squirtle->attacks = bubble = new Bubble(dt, vec3(-4.25, 3.45, 29.05));
 
 }
 
