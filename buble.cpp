@@ -68,7 +68,7 @@ void Bubble::draw() {
         glPushMatrix();
         this->material.apply();
         glTranslatef(this->position.x, this->position.y, this->position.z);
-        glutSolidSphere(0.3, 50, 50);
+        glutSolidSphere(this->size, 50, 50);
         glPopMatrix();
     } else {
         for (int i = 0; i < particles.size(); i++) {
@@ -80,7 +80,7 @@ void Bubble::draw() {
 
 void Bubble::idle() {
 
-    if (this->size < 0.5) {
+    if (this->size < 1) {
         this->size += ((rand() % 49) / 100.0) + 0.01;
     }
 
@@ -122,7 +122,7 @@ void Bubble::collisionDetection() {
 
     float radius = max(this->target->dimensions.x, max(this->target->dimensions.y, this->target->dimensions.z)) * 0.5;
 
-    float collision = radius - 2 * this->size;
+    float collision = radius - this->size;
 
     if (distance < collision) {
 

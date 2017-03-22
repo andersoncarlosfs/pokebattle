@@ -26,6 +26,10 @@
 
 Particle::Particle(double time, vec3 position) : Mover(time) {
 
+    float angle = ((60.0 + (70.0 - 60.0) * rand()) * atan(1) * 4) / 180.0;
+
+    float velocity = (rand() % 10 + (-4));
+    
     this->material = Material::white;
 
     this->scale.x = 1;
@@ -40,9 +44,9 @@ Particle::Particle(double time, vec3 position) : Mover(time) {
     this->velocity.x = 0;
     this->velocity.z = 0;
 
-    this->velocity_i.x = rand() % 10 + (-4);
-    this->velocity_i.y = rand() % 10 + (-4);
-    this->velocity_i.z = rand() % 10 + (-4);
+    this->velocity_i.x = velocity * cos(angle);
+    this->velocity_i.y = velocity * atan(angle);
+    this->velocity_i.z = velocity * sin(angle);
 
     this->acceleration.y = 0;
     this->acceleration.x = 0;
@@ -55,12 +59,14 @@ Particle::Particle(double time, vec3 position) : Mover(time) {
     this->damping = 0.8;
 
     this->active = true;
-
+    
     this->lifetime = rand() % 99 + 1;
 
     this->decay = fmod(rand(), this->lifetime * 0.5) + 1;
+    
+    this->direction = ((0.0 + (360.0 - 0.0) * rand()) * atan(1) * 4) / 180.0;
 
-    this->size = ((rand() % 199) / 1000.0) + 0.001;
+    this->size = ((rand() % 499) / 1000.0) + 0.001;
 
 }
 
@@ -75,14 +81,10 @@ void Particle::idle() {
 
         this->lifetime -= this->decay;
 
-        this->position.x += rand() % 10 -5;
-        this->position.y += rand() % 10 -5;
-        this->position.z += rand() % 10 -5;
-
-        this->velocity.x += rand() % 10 -5;
-        this->velocity.y += rand() % 10 -5;
-        this->velocity.z += rand() % 10 -5;
-
+        this->position.x += cos(this->direction);
+        this->position.y += 0;
+        this->position.z += sin(this->direction);
+        
     } else {
 
         this->active = false;

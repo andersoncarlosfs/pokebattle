@@ -1,4 +1,5 @@
 //https://github.com/krlgrgn/OpenGL-Particles
+//ftp://ftp.sgi.com/sgi/opengl/contrib/mjk/tips/particles/index.html
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -20,7 +21,8 @@
 class Particle : public Mover {
 public:
     float lifetime;
-    float decay;
+    float decay; 
+    float direction;
     double size;
     Particle(double, vec3);
     virtual ~Particle();
