@@ -44,9 +44,12 @@ void Bubbles::draw() {
 
 void Bubbles::idle() {
 
+    bool active = false;
     for (int i = 0; i < bubbles.size(); i++) {
         this->bubbles[i].idle();
+        active |= this->bubbles[i].active;
     }
+    this->active = active;   
 
 }
 

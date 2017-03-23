@@ -86,13 +86,13 @@ void Bubble::idle() {
         this->size += ((rand() % 49) / 100.0) + 0.01;
     }
 
-    if (particles.size() == 0) {
+    if (this->particles.size() == 0) {
         Attack::idle();
     } else {
         bool active = false;
         for (int i = 0; i < particles.size(); i++) {
-            particles[i].idle();
-            active |= particles[i].active;
+            this->particles[i].idle();
+            active |= this->particles[i].active;
         }
         this->active = active;
         if (!this->active) {
