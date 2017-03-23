@@ -27,6 +27,8 @@
 #include <cmath>       
 #include <vector>
 
+#include "land.h"
+#include "lake.h"
 #include "pokemon.h"
 #include "squirtle.h"
 #include "electrode.h"
@@ -55,7 +57,11 @@ float vect_z = 0.0;
 double d = 30;
 
 //
-vector<Pokemon*> pokemons;
+vector<Object*> objects;
+
+//
+Land* land;
+Lake* lake;
 
 //
 Pokemon* squirtle;
@@ -66,7 +72,7 @@ Attack* bubble;
 Attack* bubbles;
 
 // Pas de temps
-double dt = 0.01;
+double dt = 0.07;
 
 /* code ASCII pour la touche escape*/
 #define ESCAPE 27
@@ -75,8 +81,6 @@ double dt = 0.01;
 int window;
 
 /* Déclaration des en-têtes */
-
-void Draw3DSGrid();
 void rotate_camera(double speed);
 void move_camera(double speed);
 void InitDynamicParam();
@@ -148,18 +152,11 @@ void DrawGLScene() {
     glLoadIdentity();
     gluLookAt(cam_pos_x, 10.0, cam_pos_z, cam_look_x, 5.0, cam_look_z, 0.0, 1.0, 0.0);
 
-
-    // Dessin de la grille
-    glPushMatrix();
-    Draw3DSGrid();
-    glPopMatrix();
-
     //////////////////////////////////////////////////
 
-    for (int i = 0; i < pokemons.size(); i++) {
+    for (int i = 0; i < objects.size(); i++) {
 
-        pokemons[i]->draw();
-        // Attacking pokemons
+        objects[i]->draw();
 
     }
 
@@ -172,39 +169,39 @@ void DrawGLScene() {
 void keyPressed(unsigned char key, int x, int y) {
 
     switch (key) {
-        
-        case ESCAPE :            
+
+        case ESCAPE:
             /* Eteindre la fenêtre */
             glutDestroyWindow(window);
             /* Sortir du programme */
             exit(0);
             break;
-            
-        case 'd' :   
+
+        case 'd':
             electrode->defend(true);
             break;
-            
+
     }
-    
+
     glutPostRedisplay();
     glutSwapBuffers();
-    
+
 }
 
 /* Fonction de gestion du clavier */
 void keyReleased(unsigned char key, int x, int y) {
 
     switch (key) {
-                           
-        case 'd' :  
+
+        case 'd':
             electrode->defend(false);
             break;
-            
+
     }
-    
+
     glutPostRedisplay();
     glutSwapBuffers();
-    
+
 }
 
 /* Fonction de gestion du clavier special */
@@ -227,7 +224,7 @@ void Special_key(int key, int x, int y) {
 
         case GLUT_KEY_DOWN:
             move_camera(-0.02);
-            break;           
+            break;
 
         default:
             break;
@@ -246,7 +243,6 @@ void SpecialUp_key(int key, int x, int y) {
 
 }
 
-
 /* Fonction de gestion du clavier special */
 void Special_click(int button, int state, int x, int y) {
 
@@ -259,33 +255,6 @@ void Special_click(int button, int state, int x, int y) {
 
     }
 
-}
-
-/* Dessin d'une grille 3D */
-void Draw3DSGrid() {
-
-    glMaterialfv(GL_FRONT, GL_SPECULAR, Material::yellow.specular.data());
-    glMaterialfv(GL_FRONT, GL_SHININESS, Material::yellow.shininess.data());
-    glMaterialfv(GL_FRONT, GL_AMBIENT, Material::yellow.ambient.data());
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, Material::yellow.diffuse.data());
-
-    // Draw a 1x1 grid along the X and Z axis'
-    float i;
-    for (i = -50; i <= 50; i += 5) {
-        // Start drawing some lines
-        glBegin(GL_LINES);
-
-        // Do the horizontal lines (along the X)
-        glVertex3f(-50, 0, i);
-        glVertex3f(50, 0, i);
-
-        // Do the vertical lines (along the Z)
-        glVertex3f(i, 0, -50);
-        glVertex3f(i, 0, 50);
-
-        // Stop drawing lines
-        glEnd();
-    }
 }
 
 /* Gestion du déplacement de la caméra  */
@@ -318,27 +287,34 @@ void rotate_camera(double speed) {
 
 void InitDynamicParam() {
 
+    // Loading environment
+    // Land
+    land = new Land();
+    lake = new Lake();
+
     // Loading pokemons
     // Squirtle
     squirtle = new Squirtle(dt, "models/Squirtle/Squirtle.obj");
     // Electrode
     electrode = new Electrode(dt, "models/Electrode/Electrode.obj");
-    
+
     //
-    pokemons.push_back(squirtle);
-    pokemons.push_back(electrode);
-    
+    objects.push_back(land);
+    objects.push_back(lake);
+    objects.push_back(squirtle);
+    objects.push_back(electrode);
+
     // Loading attacks
     bubble = new Bubble(dt, vec3(-4.25, 3.45, 28.05));
     squirtle->attacks = bubbles = new Bubbles(dt, 50, vec3(-4.25, 3.45, 28.05));
-    
+
 }
 
 /* Défintion de la fonction IDLE */
 void idle_function() {
 
-    for (int i = 0; i < pokemons.size(); i++) {
-        pokemons[i]->idle();
+    for (int i = 0; i < objects.size(); i++) {
+        objects[i]->idle();
     }
 
 }
@@ -377,7 +353,7 @@ int main(int argc, char **argv) {
 
     /* Spécification de la fonction de de gestion du clavier */
     glutKeyboardFunc(&keyPressed);
-    
+
     /* Spécification de la fonction de de gestion du clavier */
     glutKeyboardUpFunc(&keyReleased);
 
@@ -386,7 +362,7 @@ int main(int argc, char **argv) {
 
     /* Spécification de la fonction special de gestion du clavier */
     glutSpecialUpFunc(SpecialUp_key);
-    
+
     /* Spécification de la fonction special de gestion de la souris */
     glutMouseFunc(Special_click);
 

@@ -237,10 +237,10 @@
       <in>attack.cpp</in>
       <in>attack.h</in>
       <in>battle.cpp</in>
+      <in>bubble.cpp</in>
       <in>bubble.h</in>
+      <in>bubbles.cpp</in>
       <in>bubbles.h</in>
-      <in>buble.cpp</in>
-      <in>bubles.cpp</in>
       <in>electrode.cpp</in>
       <in>electrode.h</in>
       <in>glm.cpp</in>
@@ -248,6 +248,10 @@
       <in>glm_util.cpp</in>
       <in>glmimg.cpp</in>
       <in>glmint.h</in>
+      <in>lake.cpp</in>
+      <in>lake.h</in>
+      <in>land.cpp</in>
+      <in>land.h</in>
       <in>material.cpp</in>
       <in>material.h</in>
       <in>mover.cpp</in>
