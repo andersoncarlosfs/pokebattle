@@ -180,7 +180,7 @@ void keyPressed(unsigned char key, int x, int y) {
             break;
 
         case 'a':
-            if (squirtle->attacks == bubble) {
+            if ((squirtle->attacks != 0) && (squirtle->attacks == bubble)) {
                 squirtle->attacks = bubbles;
             } else {
                 squirtle->attacks = bubble;
@@ -199,9 +199,10 @@ void keyPressed(unsigned char key, int x, int y) {
                 }
             }
             break;
-            
+
         case 'r':
             electrode->active = true;
+
             break;
 
     }
@@ -218,6 +219,7 @@ void keyReleased(unsigned char key, int x, int y) {
 
         case 'd':
             electrode->defend(false);
+
             break;
 
     }
@@ -247,6 +249,7 @@ void Special_key(int key, int x, int y) {
 
         case GLUT_KEY_DOWN:
             move_camera(-0.02);
+
             break;
 
         default:
@@ -282,6 +285,7 @@ void Special_click(int button, int state, int x, int y) {
 
 /* Gestion du déplacement de la caméra  */
 void move_camera(double speed) {
+
     vect_x = cam_look_x - cam_pos_x;
     vect_z = cam_look_z - cam_pos_z;
 
@@ -294,6 +298,7 @@ void move_camera(double speed) {
 
 /* Gestion de l'orientation de la caméra */
 void rotate_camera(double speed) {
+
     vect_x = cam_look_x - cam_pos_x;
     vect_z = cam_look_z - cam_pos_z;
 
@@ -312,6 +317,7 @@ void InitDynamicParam() {
 
     // Loading environment
     // Land
+
     land = new Land();
     lake = new Lake();
 
@@ -341,6 +347,7 @@ void InitDynamicParam() {
 void idle_function() {
 
     for (int i = 0; i < objects.size(); i++) {
+
         objects[i]->idle();
     }
 
