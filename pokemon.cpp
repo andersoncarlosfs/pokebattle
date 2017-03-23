@@ -120,12 +120,12 @@ void Pokemon::draw() {
     if (!this->active) {
         return;
     }
-    
+
     if (this->blocked) {
         this->portal->draw();
     }
 
-    if (particles.size() == 0) {
+    if (this->particles.size() == 0) {
 
         glPushMatrix();
         this->material.apply();
@@ -159,7 +159,7 @@ void Pokemon::idle() {
     if (this->blocked) {
         this->portal->idle();
     }
-    
+
     if (this->particles.size() == 0) {
         if (this->isAttacking()) {
             this->attacks->idle();
@@ -194,10 +194,10 @@ bool Pokemon::isAttacking() {
 
 void Pokemon::die() {
 
-    if (!this->active) {
+    if ((!this->active) || (this->particles.size() > 0)) {
         return;
     }
-    
+
     float size = max(this->dimensions.x, max(this->dimensions.y, this->dimensions.z));
 
     vec3 position = this->position;
@@ -223,13 +223,13 @@ void Pokemon::reborn() {
 void Pokemon::block() {
 
     this->blocked = true;
-    
+
     this->portal->position = this->position;
-    
+
 }
 
 void Pokemon::unblock() {
 
-    this->blocked = false;       
-    
+    this->blocked = false;
+
 }
