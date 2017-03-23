@@ -108,7 +108,7 @@ void Particle::draw() {
 
 void Particle::collisionDetection() {
 
-    if (this->position.y < 0.2) {
+    if (this->position.y < this->size) {
 
         this->active = false;
 

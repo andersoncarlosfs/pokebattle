@@ -38,7 +38,6 @@ void Bubbles::draw() {
 
     for (int i = 0; i < bubbles.size(); i++) {
         this->bubbles[i].draw();
-        std::cout << i << "\t" << this->bubbles[i].active << std::endl;
     }
 
 }

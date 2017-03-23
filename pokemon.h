@@ -46,7 +46,7 @@ public:
     void collisionDetection();
     virtual void attack(Pokemon*);
     virtual void defend(bool) = 0;
-    virtual bool die() = 0;
+    virtual void die();
     virtual bool isAttacking();
     virtual bool isDefending() = 0;
 private:
@@ -55,7 +55,7 @@ private:
        vector<vec2> textures;
        vector<vec3> normals;
        vector<GLushort> faces;
-     */    
+     */
 };
 
 #endif /* POKEMON_H */

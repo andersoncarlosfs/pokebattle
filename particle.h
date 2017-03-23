@@ -26,9 +26,9 @@ public:
     double size;
     Particle(double, vec3, double);
     virtual ~Particle();
-    void idle();
-    void draw();
-    void collisionDetection();
+    virtual void idle();
+    virtual void draw();
+    virtual void collisionDetection();
 private:
 };
 

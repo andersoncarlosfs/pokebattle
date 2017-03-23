@@ -14,12 +14,16 @@
 #ifndef EXPLOSION_H
 #define EXPLOSION_H
 
-class Explosion {
-public:
-    Explosion();
-    virtual ~Explosion();
-private:
+#include "particle.h"
 
+class Explosion : public Particle {
+public:
+    Explosion(double, vec3, double);
+    virtual ~Explosion();
+    void idle();
+    void draw();
+    void collisionDetection();
+private:
 };
 
 #endif /* EXPLOSION_H */
