@@ -46,6 +46,7 @@ public:
     virtual void attack(Pokemon*);
     virtual void defend(bool) = 0;
     virtual void die();
+    virtual void reborn();
     virtual bool isAttacking();
     virtual bool isDefending() = 0;
 private:

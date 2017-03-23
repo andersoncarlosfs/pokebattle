@@ -201,7 +201,7 @@ void keyPressed(unsigned char key, int x, int y) {
             break;
 
         case 'r':
-            electrode->active = true;
+            electrode->reborn();
             break;
 
     }

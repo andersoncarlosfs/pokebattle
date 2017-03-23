@@ -160,10 +160,7 @@ void Pokemon::idle() {
             this->particles[i].idle();
             active |= this->particles[i].active;
         }
-        this->active = active;
-        if (!this->active) {
-            this->particles.clear();
-        }
+        this->active = active;        
     }
 
     //cout << "Pokemon" << "\t" << "idle()" << endl;
@@ -199,4 +196,12 @@ void Pokemon::die() {
 
     }
 
+}
+
+void Pokemon::reborn() {
+    
+    this->active = true;
+    
+    this->particles.clear();
+    
 }
