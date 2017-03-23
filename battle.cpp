@@ -64,6 +64,8 @@ Land* land;
 Lake* lake;
 
 //
+vector<Pokemon*> pokemons;
+//
 Pokemon* squirtle;
 Pokemon* electrode;
 
@@ -179,6 +181,15 @@ void keyPressed(unsigned char key, int x, int y) {
 
         case 'd':
             electrode->defend(true);
+            break;
+
+        case 'p':
+            for (int i = 0; i < pokemons.size(); i++) {
+                if (!pokemons[i]->active) {
+                    pokemons[i]->active = true;
+                    break;
+                }
+            }
             break;
 
     }
@@ -299,10 +310,14 @@ void InitDynamicParam() {
     electrode = new Electrode(dt, "models/Electrode/Electrode.obj");
 
     //
-    objects.push_back(land);
-    objects.push_back(lake);
-    objects.push_back(squirtle);
+    pokemons.push_back(electrode);
+    pokemons.push_back(squirtle);
+
+    //    
     objects.push_back(electrode);
+    objects.push_back(squirtle);
+    objects.push_back(lake);
+    objects.push_back(land);
 
     // Loading attacks
     bubble = new Bubble(dt, vec3(-4.25, 3.45, 28.05));

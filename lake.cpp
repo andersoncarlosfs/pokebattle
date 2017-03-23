@@ -22,13 +22,22 @@
 #include "lake.h"
 
 Lake::Lake() {
-    this->material = Material::white;
+
+    this->material = Material::blue;
+
+    for (int i = 0; i < 35; i++) {
+        for (int j = 0; j < 100; j++) {
+            water[0][j][i] = 0;
+            water[1][j][i] = 0;
+        }
+    }
 }
 
 Lake::~Lake() {
 }
 
 void Lake::draw() {
+   // glEnable(GL_COLOR_MATERIAL);
     glPushMatrix();
     this->material.apply();
     for (int i = 15; i <= 50; i += 5) {
@@ -47,13 +56,21 @@ void Lake::draw() {
         glBegin(GL_LINES);
 
         // Do the vertical lines (along the Z)
-        glVertex3f(i, 0, 15);
         glVertex3f(i, 0, 50);
+        glVertex3f(i, 0, 15);
 
         // Stop drawing lines
         glEnd();
     }
+    glBegin(GL_POINTS);
+    for (int i = 0; i <= 35; i++) {
+        for (int j = 0; j <= 100; j++) {
+            glVertex3f(j - 50, i - 40, water[0][j][i]);
+        }
+    }
+    glEnd();
     glPopMatrix();
+    glDisable(GL_COLOR_MATERIAL);
 }
 
 void Lake::idle() {

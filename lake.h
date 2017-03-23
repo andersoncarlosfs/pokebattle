@@ -1,3 +1,6 @@
+//http://www.codecolony.de/opengl.htm#SwimmingPool
+//http://mirtchovski.com/usask/opengl/watlit.c
+//https://github.com/raun/OpenGL-Programs/blob/master/water%20ripples.cpp
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,6 +26,7 @@ public:
     void draw();
     void idle();
 private:
+    float water[2][100][35];
 };
 
 #endif /* LAKE_H */

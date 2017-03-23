@@ -31,7 +31,8 @@ Land::~Land() {
 void Land::draw() {
     glPushMatrix();
     this->material.apply();
-    for (int i = -50; i <= 15; i += 5) {
+    for (float i = -50; i <= 15; i += 5) {
+
         // Start drawing some lines
         glBegin(GL_LINES);
 
@@ -41,8 +42,10 @@ void Land::draw() {
 
         // Stop drawing lines
         glEnd();
+     
     }
-    for (int i = -50; i <= 50; i += 5) {
+    for (float i = -50; i <= 50; i += 5) {
+
         // Start drawing some lines
         glBegin(GL_LINES);
 
@@ -51,8 +54,10 @@ void Land::draw() {
         glVertex3f(i, 0, 15);
 
         // Stop drawing lines
-        glEnd();
+        glEnd();        
+
     }
+    glEnd();
     glPopMatrix();
 }
 

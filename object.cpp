@@ -14,7 +14,7 @@
 #include "object.h"
 
 Object::Object() {
-    this->active = true;
+    this->active = false;
 }
 
 Object::~Object() {
