@@ -41,11 +41,16 @@ Pokemon::Pokemon(double time, char* file) : Mover(time) {
     //glmUnitize(this->model);
     glmFacetNormals(model);
 
+    //
     GLfloat dimensions[3];
+    
     glmDimensions(model, dimensions);
+    
     this->dimensions.x = dimensions[0];
     this->dimensions.y = dimensions[1];
     this->dimensions.z = dimensions[2];
+
+    this->attacks = 0;
 
 }
 
@@ -151,7 +156,7 @@ void Pokemon::attack(Pokemon* target) {
     if (this->attacks != 0) {
         this->attacks->target = target;
         this->attacks->reset();
-        this->attacks->active = true;        
+        this->attacks->active = true;
     }
 }
 

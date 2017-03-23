@@ -57,15 +57,17 @@ void Bubbles::collisionDetection() {
 
 void Bubbles::reset() {
 
-    for (int i = 0; i < bubbles.size(); i++) {
-        this->bubbles[i].target = this->target;
-        this->bubbles[i].reset();
-        this->bubbles[i].size = ((rand() % 9) / 10.0) + 0.1;
-        this->bubbles[i].size_s = ((rand() % 9) / 10.0) + 0.1;
-        this->bubbles[i].velocity_i.y = (rand() % 19) + 11;
-        this->bubbles[i].velocity_i.x = (rand() % 19) + 11;
-        this->bubbles[i].velocity_i.z = ((rand() % 30) + 15) * (-1);
-        this->bubbles[i].active = true;
+    if (!this->active) {
+        for (int i = 0; i < bubbles.size(); i++) {
+            this->bubbles[i].target = this->target;
+            this->bubbles[i].reset();
+            this->bubbles[i].size = ((rand() % 9) / 10.0) + 0.1;
+            this->bubbles[i].size_s = ((rand() % 9) / 10.0) + 0.1;
+            this->bubbles[i].velocity_i.y = (rand() % 19) + 11;
+            this->bubbles[i].velocity_i.x = (rand() % 19) + 11;
+            this->bubbles[i].velocity_i.z = ((rand() % 30) + 15) * (-1);
+            this->bubbles[i].active = true;
+        }
     }
 
 }

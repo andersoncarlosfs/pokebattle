@@ -30,8 +30,6 @@ Electrode::Electrode(double time, char* file) : Pokemon(time, file) {
     this->rotation.z = 0;
     this->rotation.w = -27.5;
     
-    this->attacks = 0;
-    
     this->status = false;
 
 }

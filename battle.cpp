@@ -179,6 +179,14 @@ void keyPressed(unsigned char key, int x, int y) {
             exit(0);
             break;
 
+        case 'a':
+            if (squirtle->attacks == bubble) {
+                squirtle->attacks = bubbles;
+            } else {
+                squirtle->attacks = bubble;
+            }
+            break;
+
         case 'd':
             electrode->defend(true);
             break;
@@ -190,6 +198,10 @@ void keyPressed(unsigned char key, int x, int y) {
                     break;
                 }
             }
+            break;
+            
+        case 'r':
+            electrode->active = true;
             break;
 
     }
@@ -321,7 +333,7 @@ void InitDynamicParam() {
 
     // Loading attacks
     bubble = new Bubble(dt, vec3(-4.25, 3.45, 28.05));
-    squirtle->attacks = bubbles = new Bubbles(dt, 50, vec3(-4.25, 3.45, 28.05));
+    bubbles = new Bubbles(dt, 50, vec3(-4.25, 3.45, 28.05));
 
 }
 
