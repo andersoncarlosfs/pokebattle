@@ -46,6 +46,7 @@ public:
     void collisionDetection();
     virtual void attack(Pokemon*);
     virtual void defend(bool) = 0;
+    virtual bool die() = 0;
     virtual bool isAttacking();
     virtual bool isDefending() = 0;
 private:
