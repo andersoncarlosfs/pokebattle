@@ -19,6 +19,7 @@
 #include <regex>        // std::regex
  */
 #include "pokemon.h"
+#include "explosion.h"
 /*
 const regex regex_comment("^(\\s*)?(#)");
 const regex regex_vertex("^(\\s*)?(v\\s)");
@@ -43,9 +44,9 @@ Pokemon::Pokemon(double time, char* file) : Mover(time) {
 
     //
     GLfloat dimensions[3];
-    
+
     glmDimensions(model, dimensions);
-    
+
     this->dimensions.x = dimensions[0];
     this->dimensions.y = dimensions[1];
     this->dimensions.z = dimensions[2];
@@ -118,19 +119,27 @@ void Pokemon::draw() {
         return;
     }
 
-    glPushMatrix();
-    this->material.apply();
-    //glScalef(this->scale.x, this->scale.y, this->scale.z);
-    glTranslatef(this->position.x, this->position.y, this->position.z);
-    glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
-    //model->position[0] = this->position.x;
-    //model->position[1] = this->position.y;
-    //model->position[2] = this->position.z;    
-    glmDraw(model, GLM_NONE | GLM_SMOOTH);
-    glPopMatrix();
+    if (particles.size() == 0) {
 
-    if (this->isAttacking()) {
-        this->attacks->draw();
+        glPushMatrix();
+        this->material.apply();
+        //glScalef(this->scale.x, this->scale.y, this->scale.z);
+        glTranslatef(this->position.x, this->position.y, this->position.z);
+        glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
+        //model->position[0] = this->position.x;
+        //model->position[1] = this->position.y;
+        //model->position[2] = this->position.z;    
+        glmDraw(model, GLM_NONE | GLM_SMOOTH);
+        glPopMatrix();
+
+        if (this->isAttacking()) {
+            this->attacks->draw();
+        }
+
+    } else {
+        for (int i = 0; i < particles.size(); i++) {
+            particles[i].draw();
+        }
     }
 
 }
@@ -141,8 +150,20 @@ void Pokemon::idle() {
         return;
     }
 
-    if (this->isAttacking()) {
-        this->attacks->idle();
+    if (this->particles.size() == 0) {
+        if (this->isAttacking()) {
+            this->attacks->idle();
+        }
+    } else {
+        bool active = false;
+        for (int i = 0; i < particles.size(); i++) {
+            this->particles[i].idle();
+            active |= this->particles[i].active;
+        }
+        this->active = active;
+        if (!this->active) {
+            this->particles.clear();
+        }
     }
 
     //cout << "Pokemon" << "\t" << "idle()" << endl;
@@ -165,5 +186,17 @@ bool Pokemon::isAttacking() {
 }
 
 void Pokemon::die() {
-    
+
+    float size = max(this->dimensions.x, max(this->dimensions.y, this->dimensions.z));
+
+    vec3 position = this->position;
+
+    position.y *= 0.5;
+
+    for (int i = 0; i < 500; i++) {
+
+        particles.push_back(Explosion(this->time, position, size));
+
+    }
+
 }

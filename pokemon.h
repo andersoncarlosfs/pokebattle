@@ -14,20 +14,19 @@
 #ifndef POKEMON_H
 #define POKEMON_H
 
-/*
-#include <vector>       
- */
-
 #ifdef __APPLE__
 #include <OpenGL/OpenGL.h>
 #else
 #include <GL/gl.h> 
 #endif
 
+#include <vector>
+
 #include "glm.h"
 
 #include "mover.h"
 #include "attack.h"
+#include "particle.h"
 
 /*
 using namespace std;
@@ -56,6 +55,7 @@ private:
        vector<vec3> normals;
        vector<GLushort> faces;
      */
+    vector<Particle> particles;
 };
 
 #endif /* POKEMON_H */
