@@ -163,3 +163,7 @@ void Pokemon::attack(Pokemon* target) {
 bool Pokemon::isAttacking() {
     return this->attacks != 0 && this->attacks->active;
 }
+
+void Pokemon::die() {
+    
+}

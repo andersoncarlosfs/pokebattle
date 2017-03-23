@@ -243,6 +243,8 @@
       <in>bubbles.h</in>
       <in>electrode.cpp</in>
       <in>electrode.h</in>
+      <in>explosion.cpp</in>
+      <in>explosion.h</in>
       <in>glm.cpp</in>
       <in>glm.h</in>
       <in>glm_util.cpp</in>

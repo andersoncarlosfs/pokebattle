@@ -128,7 +128,7 @@ void Bubble::collisionDetection() {
 
         if (!(((collision - distance) < this->size) && this->target->isDefending())) {
 
-            this->target->active = false;
+            this->target->die();
 
         }
 
