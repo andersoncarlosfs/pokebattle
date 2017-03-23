@@ -24,13 +24,13 @@
 
 #include "explosion.h"
 
-Explosion::Explosion(double time, vec3 position, double size) : Particle(time, position, size) {
+Explosion::Explosion(double time, vec3 position, double size, Material::Material material) : Particle(time, position, size) {
 
     float angle = ((60.0 + (70.0 - 60.0) * rand()) * atan(1) * 4) / 180.0;
 
-    float velocity = 2 - (rand() % 5);
+    float velocity = rand() % 99 - 50;
 
-    this->material = Material::white;
+    this->material = material;
 
     this->scale.x = 1;
     this->scale.y = 1;
@@ -84,7 +84,6 @@ void Explosion::idle() {
 
         this->position.x += cos(this->direction);
         this->position.y += atan(this->direction);
-        ;
         this->position.z += sin(this->direction);
 
     } else {
@@ -100,12 +99,8 @@ void Explosion::draw() {
     if ((this->active == true) && (this->lifetime > 0.0)) {
         glPushMatrix();
         this->material.apply();
-        glBegin(GL_TRIANGLE_STRIP);
-        glVertex3f(this->position.x + this->size, this->position.y + this->size, this->position.z); // top    right
-        glVertex3f(this->position.x - this->size, this->position.y + this->size, this->position.z); // top    left
-        glVertex3f(this->position.x + this->size, this->position.y - this->size, this->position.z); // bottom right
-        glVertex3f(this->position.x - this->size, this->position.y - this->size, this->position.z); // bottom left
-        glEnd();
+        glTranslatef(this->position.x, this->position.y, this->position.z);
+        glutSolidSphere(this->size, 50, 50);
         glPopMatrix();
     }
 

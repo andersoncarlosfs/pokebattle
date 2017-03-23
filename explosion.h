@@ -18,7 +18,7 @@
 
 class Explosion : public Particle {
 public:
-    Explosion(double, vec3, double);
+    Explosion(double, vec3, double, Material::Material);
     virtual ~Explosion();
     void idle();
     void draw();

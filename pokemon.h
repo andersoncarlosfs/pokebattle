@@ -26,7 +26,7 @@
 
 #include "mover.h"
 #include "attack.h"
-#include "particle.h"
+#include "explosion.h"
 
 /*
 using namespace std;
@@ -55,7 +55,7 @@ private:
        vector<vec3> normals;
        vector<GLushort> faces;
      */
-    vector<Particle> particles;
+    vector<Explosion> particles;
 };
 
 #endif /* POKEMON_H */

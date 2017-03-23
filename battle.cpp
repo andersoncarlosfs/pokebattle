@@ -202,7 +202,6 @@ void keyPressed(unsigned char key, int x, int y) {
 
         case 'r':
             electrode->active = true;
-
             break;
 
     }
@@ -219,7 +218,6 @@ void keyReleased(unsigned char key, int x, int y) {
 
         case 'd':
             electrode->defend(false);
-
             break;
 
     }

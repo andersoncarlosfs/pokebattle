@@ -195,7 +195,7 @@ void Pokemon::die() {
 
     for (int i = 0; i < 500; i++) {
 
-        particles.push_back(Explosion(this->time, position, size));
+        particles.push_back(Explosion(this->time, position, size, this->material));
 
     }
 
