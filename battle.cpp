@@ -187,6 +187,14 @@ void keyPressed(unsigned char key, int x, int y) {
             }
             break;
 
+        case 'b':
+            for (int i = 0; i < pokemons.size(); i++) {
+                if (!pokemons[i]->active) {
+                    pokemons[i]->block();
+                }
+            }
+            break;
+
         case 'd':
             electrode->defend(true);
             break;
@@ -215,6 +223,15 @@ void keyPressed(unsigned char key, int x, int y) {
 void keyReleased(unsigned char key, int x, int y) {
 
     switch (key) {
+
+        case 'b':
+            for (int i = 0; i < pokemons.size(); i++) {
+                if (!pokemons[i]->active) {
+                    pokemons[i]->unblock();
+                }
+            }
+            break;
+
 
         case 'd':
             electrode->defend(false);

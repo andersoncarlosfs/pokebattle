@@ -227,3 +227,9 @@ void Pokemon::block() {
     this->portal->position = this->position;
     
 }
+
+void Pokemon::unblock() {
+
+    this->blocked = false;       
+    
+}

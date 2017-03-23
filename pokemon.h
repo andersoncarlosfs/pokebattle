@@ -49,6 +49,7 @@ public:
     virtual void die();
     virtual void reborn();
     virtual void block();
+    virtual void unblock();
     virtual bool isAttacking();
     virtual bool isDefending() = 0;
 private:
