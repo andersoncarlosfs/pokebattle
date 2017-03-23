@@ -18,7 +18,7 @@
 
 class Portal : public Object {
 public:
-    Portal();
+    Portal(vec3, vec3);
     virtual ~Portal();
     void draw();
     void idle();

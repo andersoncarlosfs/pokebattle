@@ -27,6 +27,7 @@
 #include "mover.h"
 #include "attack.h"
 #include "explosion.h"
+#include "portal.h"
 
 /*
 using namespace std;
@@ -47,6 +48,7 @@ public:
     virtual void defend(bool) = 0;
     virtual void die();
     virtual void reborn();
+    virtual void block();
     virtual bool isAttacking();
     virtual bool isDefending() = 0;
 private:
@@ -56,6 +58,8 @@ private:
        vector<vec3> normals;
        vector<GLushort> faces;
      */
+    bool blocked;
+    Portal* portal;
     vector<Explosion> particles;
 };
 

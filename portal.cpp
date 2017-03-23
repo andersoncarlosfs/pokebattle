@@ -23,10 +23,12 @@
 
 #include "portal.h"
 
-Portal::Portal() {
+Portal::Portal(vec3 dimensions, vec3 position) {
 
-    this->material = Material::tin;
+    this->material = Material::red;
     
+    this->position = position;
+
     this->rotation.x = 0;
     this->rotation.y = 0;
     this->rotation.z = 0;
@@ -36,11 +38,9 @@ Portal::Portal() {
 
     this->inner = 0.5;
 
-    this->outter = 7.0;
-
-    this->position.x = 0;
-    this->position.y = (2 * this->outter + this->inner) * sin + this->inner + ((1 - sin) * this->inner) - (this->inner * 1 / 10);
-    this->position.z = 0;
+    this->outter = max(dimensions.x, max(dimensions.y, dimensions.z)) + 2;
+    
+    this->position.y = (2 * this->outter + this->inner) * sin + this->inner + ((1 - sin) * this->inner) - (this->inner * 1 / 10);    
 
     this->axis = 0;
 
@@ -59,7 +59,7 @@ void Portal::draw() {
     glPushMatrix();
     this->material.apply();
     glPushMatrix();
-    glTranslatef(this->position.x, this->position.y, this->position.z);
+    glTranslatef(this->position.x, 3 * this->position.y, this->position.z);
     glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
     glPushMatrix();
     glRotatef(90, 1, 0, 0);
@@ -68,6 +68,7 @@ void Portal::draw() {
     glPopMatrix();
 
     glPushMatrix();
+    glTranslatef(this->position.x, 2 * this->position.y, this->position.z);
     glRotatef(-this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
     glPushMatrix();
     glRotatef(90, 1, 0, 0);
@@ -76,7 +77,7 @@ void Portal::draw() {
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(this->position.x, -this->position.y, this->position.z);
+    glTranslatef(this->position.x, this->position.y, this->position.z);
     glRotatef(this->rotation.w, this->rotation.x, this->rotation.y, this->rotation.z);
     glPushMatrix();
     glRotatef(90, 1, 0, 0);

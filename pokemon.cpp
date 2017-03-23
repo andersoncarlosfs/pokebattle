@@ -53,6 +53,8 @@ Pokemon::Pokemon(double time, char* file) : Mover(time) {
 
     this->attacks = 0;
 
+    this->portal = new Portal(this->dimensions, vec3());
+
 }
 
 /*
@@ -118,6 +120,10 @@ void Pokemon::draw() {
     if (!this->active) {
         return;
     }
+    
+    if (this->blocked) {
+        this->portal->draw();
+    }
 
     if (particles.size() == 0) {
 
@@ -150,6 +156,10 @@ void Pokemon::idle() {
         return;
     }
 
+    if (this->blocked) {
+        this->portal->idle();
+    }
+    
     if (this->particles.size() == 0) {
         if (this->isAttacking()) {
             this->attacks->idle();
@@ -160,7 +170,7 @@ void Pokemon::idle() {
             this->particles[i].idle();
             active |= this->particles[i].active;
         }
-        this->active = active;        
+        this->active = active;
     }
 
     //cout << "Pokemon" << "\t" << "idle()" << endl;
@@ -171,7 +181,7 @@ void Pokemon::collisionDetection() {
 }
 
 void Pokemon::attack(Pokemon* target) {
-    if (this->attacks != 0) {
+    if ((this->attacks != 0) && (!this->blocked)) {
         this->attacks->target = target;
         this->attacks->reset();
         this->attacks->active = true;
@@ -184,6 +194,10 @@ bool Pokemon::isAttacking() {
 
 void Pokemon::die() {
 
+    if (!this->active) {
+        return;
+    }
+    
     float size = max(this->dimensions.x, max(this->dimensions.y, this->dimensions.z));
 
     vec3 position = this->position;
@@ -199,9 +213,17 @@ void Pokemon::die() {
 }
 
 void Pokemon::reborn() {
-    
+
     this->active = true;
-    
+
     this->particles.clear();
+
+}
+
+void Pokemon::block() {
+
+    this->blocked = true;
+    
+    this->portal->position = this->position;
     
 }
