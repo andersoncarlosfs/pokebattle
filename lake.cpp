@@ -37,7 +37,7 @@ Lake::~Lake() {
 }
 
 void Lake::draw() {
-   // glEnable(GL_COLOR_MATERIAL);
+    // glEnable(GL_COLOR_MATERIAL);
     glPushMatrix();
     this->material.apply();
     for (int i = 15; i <= 50; i += 5) {
@@ -62,6 +62,7 @@ void Lake::draw() {
         // Stop drawing lines
         glEnd();
     }
+    /*
     glBegin(GL_POINTS);
     for (int i = 0; i <= 35; i++) {
         for (int j = 0; j <= 100; j++) {
@@ -69,6 +70,7 @@ void Lake::draw() {
         }
     }
     glEnd();
+     */
     glPopMatrix();
     glDisable(GL_COLOR_MATERIAL);
 }

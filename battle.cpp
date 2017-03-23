@@ -189,9 +189,7 @@ void keyPressed(unsigned char key, int x, int y) {
 
         case 'b':
             for (int i = 0; i < pokemons.size(); i++) {
-                if (!pokemons[i]->active) {
-                    pokemons[i]->block();
-                }
+                pokemons[i]->block();
             }
             break;
 
@@ -226,9 +224,7 @@ void keyReleased(unsigned char key, int x, int y) {
 
         case 'b':
             for (int i = 0; i < pokemons.size(); i++) {
-                if (!pokemons[i]->active) {
-                    pokemons[i]->unblock();
-                }
+                pokemons[i]->unblock();
             }
             break;
 

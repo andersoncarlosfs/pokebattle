@@ -25,7 +25,7 @@
 
 Portal::Portal(vec3 dimensions, vec3 position) {
 
-    this->material = Material::red;
+    this->material = Material::tin;
     
     this->position = position;
 
